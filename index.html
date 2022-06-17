@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chess.com Unofficial Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset = UTF-8>
+        <script src="https://kit.fontawesome.com/85d6c6c2f3.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+        <link rel = "stylesheet" href = "./styles/general.css">
+        <link rel="stylesheet" href="./styles/index.css">
+    </head>
+    <body>
+        <aside class="aside-main">
+            <header class="header">
+                <a class="logo" href="./index.html">
+                    <img src="./images/chess-com-logo.png" alt="Chess.com Logo" class="logo-chesscom">
+                    <p>Unofficial Page</p>
+                </a>
+                <nav class="header-nav">
+                    <div class="search-dropdown">
+                        <p class="search-dropdown-text">
+                            <span>Buscar</span>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </p>
+                        <ul class="search-dropdown-list">
+                            <li class="search-dropdown-list-item">
+                                <a href="./searchname.html" class="search-dropdown-list-item-link">
+                                    <span>Por nombre</span>
+                                    <i class="fa-solid fa-user"></i>
+                                </a>
+                            </li>
+                            <li class="search-dropdown-list-item">
+                                <a href="./searchtitle.html" class="search-dropdown-list-item-link">
+                                    <span>Por titulo</span>
+                                    <i class="fa fas fa-solid fa-trophy"></i>
+                                </a>
+                            </li>
+                            <li class="search-dropdown-list-item">
+                                <a href="./searchclub.html" class="search-dropdown-list-item-link">
+                                    <span>Clubes</span>
+                                    <i class="fa-solid fa-users"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <footer class="footer">
+                <section class="social">
+                    <div class="dev-info">
+                        <p class="dev-info-name">
+                            <span>Alejo Lang </span>
+                            <i class="fa-brands fa-dev"></i>
+                        </p>
+                        <ul class="dev-contact-list">
+                            <li class="dev-contact-list-item contact-github">
+                                <a href="" class="dev-contact-list-item-link">
+                                    <i class="fa fa-brands fa-github"></i>
+                                </a>
+                            </li>
+                            <li class="dev-contact-list-item contact-instagram">
+                                <a href="https://www.instagram.com/_alejo.lg_/" class="dev-contact-list-item-link">
+                                    <i class="fa fa-brands fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li class="dev-contact-list-item contact-portfolio">
+                                <a href="#" class="dev-contact-list-item-link">
+                                    <i class="fa fa-solid fa-briefcase"></i>
+                                </a>
+                            </li>
+                            <li class="dev-contact-list-item contact-mail">
+                                <a href="mailto:alejolang123@gmail.com" class="dev-contact-list-item-link">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </footer>
+        </aside>
+        <main class="main-content">
+            <h1 class="main-title">Pagina Web utilizando la API de <a href="https://www.chess.com/news/view/published-data-api" target="_blank">Chess.com</a></h1>
+            <p class="main-description">Las opciones disponibles actualmente son:</p>
+            <ul class="main-features">
+                <li class="main-features-item">Buscar por nombre de usuario</li>
+                <li class="main-features-item">Listar informacion principal y estadisticas de un usuario buscado</li>
+                <li class="main-features-item">Buscar por club</li>
+                <li class="main-features-item">Buscar usuarios por titulo conseguido (Opcion no optimizada, la carga de resultados puede tardar)</li>
+            </ul>
+            
+            <section class="main-aclaration">
+                <span>ACLARACIÓNES:</span> 
+                <p>Al buscar, se debe usar un nombre valido registrado en la pagina de <a href="https://www.chess.com/es" target="_blank">Chess.com</a></p>
+                <p>Algunas estadisticas pueden no concordar ocn los datos de la página oficial, esto es debido a la API usada</p>
+                <p>Algunas banderas pueden no mostrarse debido a un diferencia en los codigos de paises</p>
+            </section>
+        </main>
+    </body>
+</html>

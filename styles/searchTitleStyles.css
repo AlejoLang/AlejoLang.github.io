@@ -1,0 +1,78 @@
+*
+{
+    --accent-color: #6c8e25;
+    --primary-color: #312e2b;
+    --secondary-color: #262421;
+    --button-color: #4d7427;
+    --text-color: #cfcfce;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-color);
+    transition: 0.25s ease all;
+}
+
+.title-selection
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 2rem 0;
+    font-size: 1.2rem;
+}
+
+.title-input-selection
+{
+    padding: 0.5rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+    font-weight: 700;
+    background: none;
+    border: 1px solid var(--button-color);
+    border-radius: 10px;
+}
+
+.title-input-selection-option
+{
+    font-size: 1rem;
+    background-color: var(--secondary-color);
+}
+
+.searchPlayersBtn
+{
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    margin: 0 auto;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: var(--button-color);
+    border: none;
+    border-radius: 10px;
+}
+
+.searchPlayersBtn:focus
+{
+    background-color: var(--accent-color);
+}
+
+@media screen and (min-width:1000px) {
+    .title-selection
+    {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .title-input-selection
+    {
+        margin: 0 2rem;
+        font-size: 1.1rem;
+    }
+
+    .searchPlayersBtn
+    {
+        height: 100%;
+        margin: 0;
+        font-size: 1.1rem;
+    }
+}

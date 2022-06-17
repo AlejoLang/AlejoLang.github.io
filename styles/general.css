@@ -1,0 +1,315 @@
+/* General config */
+*
+{
+    --accent-color: #6c8e25;
+    --primary-color: #312e2b;
+    --secondary-color: #262421;
+    --button-color: #4d7427;
+    --text-color: #cfcfce;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-color);
+    transition: 0.25s ease all;
+}
+
+body
+{
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: var(--primary-color);
+}
+
+/* General config end */
+
+/* Aside config */
+
+.aside-main
+{
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    width: 15%;
+    padding: 1rem;
+}
+
+/* Chess logo config */
+
+.logo
+{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 90%;
+    padding: 0.25rem;
+    margin-bottom: 2rem;
+}
+
+.logo-chesscom
+{
+    width: 100%;
+}
+
+/* Chess logo config end */
+
+/* Header config */
+
+.header-nav
+{
+    width: 100%;
+}
+
+/* Dropdown search config */
+
+.search-dropdown
+{
+    width: calc(100% - 2rem);
+    position: absolute;
+    z-index: 10;
+}
+
+.search-dropdown-text
+{
+    background-color: var(--button-color);
+    height: 2em;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-dropdown-list
+{
+    list-style: none;
+    display: none;
+    position: absolute;
+    z-index: 10;
+    left: 102%;
+    padding: 0.1rem;
+    overflow: hidden;
+    border-radius: 10px;
+    width: 150px;
+    top: 0;
+    background-color: var(--secondary-color);
+    border: 1px solid #000;
+}
+
+.search-dropdown-list-item-link
+{
+    padding: 0.75rem;
+    width: 100%;
+    border-radius: 10px;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+.fa-user
+{
+    color: rgb(24, 114, 16);
+}
+
+.fa-trophy
+{
+    color: rgb(236, 217, 39);
+}
+
+.fa-users
+{
+    color: rgb(42, 40, 177)
+}
+
+.search-dropdown-list-item-link:hover
+{
+    background-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.search-dropdown-text:hover
+{
+    background-color: var(--accent-color);
+}
+
+.search-dropdown:hover .search-dropdown-list
+{
+    display: block;
+}
+
+/* Dropdown search config */
+
+/* Header config end*/
+
+/* Footer config dev info */
+
+.dev-info
+{
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}
+
+.dev-info-name
+{
+    background-color: var(--button-color);
+    height: 2em;
+    box-sizing: border-box;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.dev-contact-list
+{
+    display: none;
+    padding: 0.1rem;
+    width: 50px;
+    background-color: var(--secondary-color);
+    overflow: hidden;
+    border-radius: 10px;
+    z-index: 10;
+    position: absolute;
+    bottom: 0;
+    left: 101%;
+    border: 1px solid #000;
+}
+
+.dev-contact-list-item-link
+{
+    padding: 0.75rem;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dev-info-name:hover
+{
+    background-color: var(--accent-color);
+}
+
+.dev-contact-list-item-link:hover,
+.dev-contact-list-item-link:hover .dev-contact-list-item-link:hover i
+{
+    background-color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+.dev-info:hover .dev-contact-list
+{
+    display: inline-block;
+}
+
+/* Footer config dev info end */
+
+.main-content
+{
+    padding: 2rem;
+    width: 85%;
+    box-sizing: border-box;
+}
+
+/* Mobile design */
+
+@media screen and (max-width: 1000px) {
+    body{
+        flex-direction: column;
+    }
+
+    .aside-main
+    {
+        width: 100vw;
+        height: 100px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .header
+    {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+    }
+
+    .header-nav
+    {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    
+    .logo
+    {
+        margin-bottom: 0;
+        margin-right: 2rem;
+        height: 100%;
+    }
+
+    .logo-chesscom
+    {
+        height: calc(100% - 1rem);
+        width: auto;
+    }
+
+    .search-dropdown
+    {
+        width: fit-content;
+        margin-right: 1rem;
+    }
+
+    .search-dropdown-text span
+    {
+        display: none;
+    }
+
+    .search-dropdown-text
+    {
+        width: fit-content;
+    }
+
+    .search-dropdown-list
+    {
+        left: -300%;
+        top: 102%;
+    }
+
+    
+    .dev-info-name span
+    {
+        display: none;
+    }
+
+    .dev-contact-list
+    {
+        left: -15%;
+        bottom: -200px;
+    }
+
+    .main-content
+    {
+        width: 100%;
+    }
+}

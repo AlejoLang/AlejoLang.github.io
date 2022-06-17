@@ -1,0 +1,519 @@
+*
+{
+    --accent-color: #6c8e25;
+    --primary-color: #312e2b;
+    --secondary-color: #262421;
+    --button-color: #4d7427;
+    --text-color: #cfcfce;
+}
+
+.main-content
+{
+    padding: 0;
+    border-top: 2px solid #000;
+}
+
+.player-principal
+{
+    width: 100%;
+    padding: 0.5rem;
+    background-color: var(--secondary-color);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.player-principal-avatar
+{
+    width: 25%;
+    height: 25%;
+    margin-right: 1rem;
+    border-radius: 10px;
+}
+
+.player-principal-info
+{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding-left: 1rem;
+    border-left: 2px solid #000;
+}
+
+.player-principal-info-header
+{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.player-principal-info-icons
+{
+    position: relative;
+    display: flex;
+}
+
+.player-principal-info-icon
+{
+    position: relative;
+    z-index: 40;
+}
+
+.player-principal-info-username
+{
+    font-size: 1.8rem;
+    margin-right: 1rem;
+}
+
+.player-principal-info-header i
+{
+    margin: 0.6rem;
+    font-size: 1.5rem;
+}
+
+.player-principal-info-twitch
+{
+    text-decoration: none;
+}
+
+.player-principal-info-twitch-icon
+{
+    color: #a970ff;
+}
+
+.player-principal-info-verified
+{
+    color: rgb(61, 47, 255);
+}
+
+.player-principal-info-stat
+{
+    color: #940303
+}
+
+.player-principal-info-icon-twitch:hover::after
+{
+    content: 'Streamer';
+    position: absolute;
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    height: 1em;
+    left: -25%;
+    bottom: -2.5em;
+    z-index: 30;
+    width: fit-content;
+    white-space: nowrap;
+    background-color: #555;
+    border-radius: 10px;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+
+.player-ponrincipal-info-icon-status:hover::after
+{
+    content: 'Staff';
+    position: absolute;
+    z-index: 30;
+    font-size: 0.9rem;
+    height: 1em;
+    bottom: -2.5em;
+    width: fit-content;
+    white-space: nowrap;
+    background-color: #555;
+    border-radius: 10px;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+
+.player-ponrincipal-info-icon-verified:hover::after
+{
+    content: 'Verificado';
+    position: absolute;
+    z-index: 30;
+    right: -25%;
+    font-size: 0.9rem;
+    height: 1em;
+    bottom: -2.5em;
+    width: fit-content;
+    white-space: nowrap;
+    background-color: #555;
+    border-radius: 10px;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+
+.player-principal-info-subheader
+{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+}
+
+.player-principal-info-fullname
+{
+    margin-right: 1rem;
+}
+
+.player-principal-info-location
+{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    cursor: default;
+}
+
+.player-principal-info-location-icon
+{
+    margin-right: 0.5rem;
+}
+
+.player-principal-info-flag
+{
+    width: 1.75em;
+    margin-left: 0.25rem;
+}
+
+.player-principal-info-other
+{
+    display: flex;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.player-principal-info-other div
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.3rem;
+    font-size: 0.9rem;
+    width: 33%;
+    text-align: center;
+    border-left: 1px solid #fff;
+    position: relative;
+    z-index: 0;
+    cursor: default;
+}
+
+.player-principal-info-other-lastonline:hover::after
+{
+    content: 'Ultima conexión';
+    position: absolute;
+    font-size: 0.9rem;
+    height: 1em;
+    top: -2.5em;
+    width: fit-content;
+    white-space: nowrap;
+    background-color: #555;
+    border-radius: 10px;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.player-principal-info-other-joined:hover::after
+{
+    content: 'Fecha de inscripción';
+    position: absolute;
+    font-size: 0.9rem;
+    height: 1em;
+    top: -2.5em;
+    width: fit-content;
+    white-space: nowrap;
+    background-color: #555;
+    border-radius: 10px;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.player-principal-info-other-followers:hover::after
+{
+    content: 'Seguidores';
+    position: absolute;
+    font-size: 0.9rem;
+    height: 1em;
+    top: -2.5em;
+    width: fit-content;
+    white-space: nowrap;
+    background-color: #555;
+    border-radius: 10px;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.player-principal-info-other-followers
+{
+    border-right: 1px solid #fff;
+}
+
+.player-principal-info-other div i 
+{
+    margin-bottom: 0.2rem;
+}
+
+.player-stats
+{
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: var(--secondary-color);
+}
+
+.player-stats-mainHeader
+{
+    margin-bottom: 2rem;
+}
+
+.player-stats-mainHeader-games
+{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.player-stats-mainHeader-gamesplayed-result
+{
+    font-weight: 700;
+    margin-right: 3rem;
+}
+
+.player-stats-tittext
+{
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.player-stats-info
+{
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #fff;
+}
+
+.player-stats-header
+{
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0.7rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.player-stats-header-title,
+.player-stats-header-secondsec
+{
+    display: flex;
+    align-items: flex-end;
+}
+
+.player-stats-header-title i
+{
+    font-size: 1.3rem;
+    margin-right: 0.75rem;
+}
+
+.fa-sun
+{
+    color: rgb(206, 185, 0);
+}
+
+.fa-shuffle
+{
+    color: rgb(201, 107, 0);
+}
+
+.fa-stopwatch
+{
+    color: rgb(60, 117, 43);
+}
+
+.fa-gun
+{
+    color: rgb(107, 91, 0);
+}
+
+.fa-bolt-lightning
+{
+    color: rgb(255, 253, 128);
+}
+
+.fa-puzzle-piece
+{
+    color: rgb(255, 115, 0);
+}
+
+.fa-truck-fast
+{
+    color: rgb(175, 79, 0);
+}
+
+.player-stats-header-secondsec p
+{
+    font-weight: 700;
+}
+
+.player-stats-header-button
+{
+    border: none;
+    background: none;
+    border-radius: 5px;
+    margin-left: 0.75rem;
+    width: 1.5rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.player-stats-header-button:focus
+{
+    background-color: var(--primary-color);
+}
+
+.player-stats-header-button:hover
+{
+    background-color: var(--primary-color);
+}
+
+
+.player-stats-content
+{
+    padding: 0 0.7rem;
+    display: none;
+}
+
+.player-stats-content-div
+{
+    display: flex;
+    width: 100%;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.player-stats-content-text
+{
+    font-weight: 700;
+}
+
+.player-stats-content-gamesplayed-result
+{
+    font-weight: 700;
+}
+
+.player-stats-content-best-info
+{
+    display: flex;
+}
+
+.player-stats-content-best-info-points
+{
+    margin-right: 0.5rem;
+    color: #6c8e25;
+    font-weight: 700;
+}
+
+.player-stats-content-best-info-points-low
+{
+    margin-right: 0.5rem;
+    color: #ad3a3a;
+    font-weight: 700;
+}
+
+.player-stats-content-best-info-date
+{
+    color: #888888
+}
+
+.player-stats-content-rate
+{
+    position: relative;
+}
+
+.player-stats-content-rate-res
+{
+    display: flex;
+}
+
+.player-stats-content-rate-text:hover::after
+{
+    content: 'Ganadas / Perdidas / Empatadas';
+    position: absolute;
+    font-size: 0.8rem;
+    height: 1em;
+    top: -2.5em;
+    width: fit-content;
+    white-space: nowrap;
+    background-color: #555;
+    border-radius: 10px;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.player-stats-content-rate-res p
+{
+    margin-left: 1ch;
+}
+
+.player-stats-content-rate-res-win
+{
+    color: #6c8e25;
+}
+
+.player-stats-content-rate-res-loss
+{
+    color: #ad3a3a;
+}
+
+.player-stats-content-rate-res-draw
+{
+    color: #888888;
+}
+
+.fide-div
+{
+    border-top: 1px solid #fff;
+    padding: 0.5rem;
+}
+
+@media screen and (min-width: 1000px) {
+    .main-content
+    {
+        padding: 3rem;
+    }
+
+    .player-principal
+    {
+        border-radius: 10px;
+        margin-bottom: 3rem;
+    }
+
+    .player-ponrincipal-info-icon-twitch:hover::after,
+    .player-ponrincipal-info-icon-status:hover::after,
+    .player-ponrincipal-info-icon-verified:hover::after
+    {
+        top: -2.5em;
+    }
+
+    .player-stats
+    {
+        margin: 0 10ch;
+        border-radius: 10px;
+    }
+}

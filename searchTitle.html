@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chess.com Unofficial Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset = UTF-8>
+        <script src="https://kit.fontawesome.com/85d6c6c2f3.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+        <link rel = "stylesheet" href = "./styles/general.css">
+        <link rel="stylesheet" href="./styles/searchNameStyles.css">
+        <link rel="stylesheet" href="./styles/searchTitleStyles.css">
+    </head>
+    <body>
+        <aside class="aside-main">
+            <header class="header">
+                <a class="logo" href="./index.html">
+                    <img src="./images/chess-com-logo.png" alt="Chess.com Logo" class="logo-chesscom">
+                    <p>Unofficial Page</p>
+                </a>
+                <nav class="header-nav">
+                    <div class="search-dropdown">
+                        <p class="search-dropdown-text">
+                            <span>Buscar</span>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </p>
+                        <ul class="search-dropdown-list">
+                            <li class="search-dropdown-list-item">
+                                <a href="./searchname.html" class="search-dropdown-list-item-link">
+                                    <span>Por nombre</span>
+                                    <i class="fa-solid fa-user"></i>
+                                </a>
+                            </li>
+                            <li class="search-dropdown-list-item">
+                                <a href="./searchtitle.html" class="search-dropdown-list-item-link">
+                                    <span>Por titulo</span>
+                                    <i class="fa fas fa-solid fa-trophy"></i>
+                                </a>
+                            </li>
+                            <li class="search-dropdown-list-item">
+                                <a href="./searchclub.html" class="search-dropdown-list-item-link">
+                                    <span>Clubes</span>
+                                    <i class="fa-solid fa-users"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <footer class="footer">
+                <section class="social">
+                    <div class="dev-info">
+                        <p class="dev-info-name">
+                            <span>Alejo Lang </span>
+                            <i class="fa-brands fa-dev"></i>
+                        </p>
+                        <ul class="dev-contact-list">
+                            <li class="dev-contact-list-item contact-github">
+                                <a href="" class="dev-contact-list-item-link">
+                                    <i class="fa fa-brands fa-github"></i>
+                                </a>
+                            </li>
+                            <li class="dev-contact-list-item contact-instagram">
+                                <a href="https://www.instagram.com/_alejo.lg_/" class="dev-contact-list-item-link">
+                                    <i class="fa fa-brands fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li class="dev-contact-list-item contact-portfolio">
+                                <a href="#" class="dev-contact-list-item-link">
+                                    <i class="fa fa-solid fa-briefcase"></i>
+                                </a>
+                            </li>
+                            <li class="dev-contact-list-item contact-mail">
+                                <a href="mailto:alejolang123@gmail.com" class="dev-contact-list-item-link">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </footer>
+        </aside>
+        <main class=
+        "main-content">
+            <header class="main-content-header">
+                <h1 class="main-title">Busqueda por título</h1>
+                <section class="title-selection">
+                    <label for="titlesSelect">Titulos:</label>
+                    <select name="titles" id="titlesSelect" class="title-input-selection">
+                        <option value="" class="title-input-selection-option" disabled selected>Seleccioná el título</option>
+                        <option value="GM" class="title-input-selection-option">Gran Maestro (GM)</option>
+                        <option value="WGM" class="title-input-selection-option">Gran Maestra Femenina (WGM)</option>
+                        <option value="IM" class="title-input-selection-option">Maestro Internacional (IM)</option>
+                        <option value="WIM" class="title-input-selection-option">Maestra Internacional Femenina (WIM)</option>
+                        <option value="FM" class="title-input-selection-option">Maestro FIDE (FM)</option>
+                        <option value="WFM" class="title-input-selection-option">Maestra FIDE Femenina (WFM)</option>
+                        <option value="NM" class="title-input-selection-option">Maestro Nacional (NM)</option>
+                        <option value="WNM" class="title-input-selection-option">Maestra Nacional Femenina (WNM)</option>
+                        <option value="CM" class="title-input-selection-option">Maestro Candidato (CM)</option>
+                        <option value="WCM" class="title-input-selection-option">Maestra Candidata Femenina (WCM)</option>
+                    </select>
+                    <button class="searchPlayersBtn" onclick="searchPlayers()">Buscar</button>
+                </section>
+            </header>
+            <section class="results">
+            </section>
+        </main>
+        <script src="./scripts/searchTitleScript.js"></script>
+    </body>
+</html>
