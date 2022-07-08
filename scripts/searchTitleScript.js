@@ -28,11 +28,12 @@ async function getUserFlagCode(urlCountry)
 
 async function searchPlayers()
 {
-
     if(inputSelector.value)
     {
-        handlePaginator('goFirstPage');
+        index = 1;
+        document.getElementsByClassName('paginator-index')[0].textContent = index;
         control = true;
+        delay(1000);
 
         let url = 'https://api.chess.com/pub/titled/' + inputSelector.value;
         playersList = await getTitledPlayers(url);
@@ -59,16 +60,14 @@ async function displayPlayers(players)
 
     let interruption = false; //Variable que detecta si se produjo un retorno de la funcion
     let finTemplate = ``;
-    console.log('1 Fuera del for, control = '+ control);
+    
     control = false;
-    console.log('2 Fuera del for, control = '+ control);
 
     for(let i = (index - 1) * 20; i < index * 20; i++){
-        console.log('1 Dentro del for, control = '+ control);
-        if(control){interruption = true; control = false; console.log('Dentro del if'); return;}
-        console.log(i)
-        if(i > maxIndex * 20){return;}
-        console.log('2 Dentro del for, control = '+ control);
+        
+        console.log(i, maxIndex);
+        if(control){console.log('a'); interruption=true; control = false; return 0;}
+        if(i >= players.length){break;}
 
         await displayPlayer(players[i]);
 
@@ -96,35 +95,34 @@ async function displayPlayers(players)
                     </a>`;
         };
     }
+
     document.getElementsByClassName('lds-ring-div')[0].style.display = 'none';
-    if(!interruption){resultSection.insertAdjacentHTML('beforeend', finTemplate);}
+    if(!interruption){interruption = false; resultSection.insertAdjacentHTML('beforeend', finTemplate);}
 }
 
-function handlePaginator(action)
+async function handlePaginator(action)
 {
     control = true;
+    delay(2000);
     console.log('Cambio del control a true');
     indexNum = document.getElementsByClassName('paginator-index')[0];
     if(maxIndex) {
         if(action == 'goFirstPage' && index != 1) {
             index = 1;
             indexNum.textContent = index;
-            displayPlayers(playersList.players);
         }
         if(action == 'returnPage' && index > 1) {
             index--;
             indexNum.textContent = index;
-            displayPlayers(playersList.players);
         }
         if(action == 'nextPage' && index <= maxIndex) {
             index++;
             indexNum.textContent = index;
-            displayPlayers(playersList.players);
         }
         if(action == 'goLastPage' && index != maxIndex) {
             index = maxIndex;
             indexNum.textContent = index;
-            displayPlayers(playersList.players);
         }
+        displayPlayers(playersList.players);
     }
 }
