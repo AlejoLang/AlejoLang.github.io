@@ -77,7 +77,7 @@ async function displayResults(results)
         }
 
         const template =`
-                    <a href="./infoplayer.html?${results.username}" class="user-listed">
+                    <a href="./infoPlayer.html?${results.username}" class="user-listed">
                         <img src="${results.avatar}" alt="${results.name}'s profile pic" class="user-listed-profile-pic">
                         <div class="user-listed-info">
                             <p class="user-listed-info-name">${results.username}</p>

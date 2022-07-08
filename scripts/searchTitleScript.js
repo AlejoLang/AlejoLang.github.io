@@ -87,7 +87,7 @@ async function displayPlayers(players)
             }
 
             finTemplate += `
-                    <a href="./infoplayer.html?${playerInfo.username}" class="user-listed">
+                    <a href="./infoPlayer.html?${playerInfo.username}" class="user-listed">
                         <img src="${playerInfo.avatar}" alt="${playerInfo.name}'s profile pic" class="user-listed-profile-pic">
                         <div class="user-listed-info">
                             <p class="user-listed-info-name">${playerInfo.username}</p>
