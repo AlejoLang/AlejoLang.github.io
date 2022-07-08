@@ -81,8 +81,7 @@
                 </section>
             </footer>
         </aside>
-        <main class=
-        "main-content">
+        <main class="main-content">
             <header class="main-content-header">
                 <h1 class="main-title">Busqueda por título</h1>
                 <section class="title-selection">
@@ -103,8 +102,26 @@
                     <button class="searchPlayersBtn" onclick="searchPlayers()">Buscar</button>
                 </section>
             </header>
+            <div class="lds-ring-div">
+                <div class="lds-dual-ring"></div>
+            </div>
             <section class="results">
             </section>
+            <div class="paginator-div">
+                <button class="paginator-goFirstPage" onclick="handlePaginator('goFirstPage')">
+                    <i class="fa fas fa-solid fa-backward"></i>
+                </button>
+                <button class="paginator-returnPage" onclick="handlePaginator('returnPage')">
+                    <i class="fa fas fa-solid fa-caret-left"></i>
+                </button>
+                <p class="paginator-index">1</p>
+                <button class="paginator-nextPage" onclick="handlePaginator('nextPage')">
+                    <i class="fa fas fa-solid fa-caret-right"></i>
+                </button>
+                <button class="paginator-goLastPage" onclick="handlePaginator('goLastPage')">
+                    <i class="fa fas fa-solid fa-forward"></i>
+                </button>
+            </div>
         </main>
         <script src="./scripts/searchTitleScript.js"></script>
     </body>

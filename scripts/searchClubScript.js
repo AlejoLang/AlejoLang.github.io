@@ -57,7 +57,11 @@ async function getUserFlag(countryUrl)
 
 async function displayResults(results)
 {
-    if(results.code == 0) {alert("Nombre inválido"); return;} // Si no se encntro el nombre, alerta y sale de la funcion
+    if(results.code == 0)  // Si no se encntro el nombre, alerta y sale de la funcion
+    {
+        document.getElementsByClassName('errorAlert')[0].showModal();
+        return;
+    } 
     if(!results.icon) {results.icon = './Images/user-default.png'} // Si el usuario no tiene un avatar, se le asigna uno default
 
     resultSec.innerHTML = '';
@@ -90,5 +94,18 @@ async function displayResults(results)
     
     resultSec.insertAdjacentHTML('beforeend', template);
     })
+}
+
+/*Codigo de https://codepen.io/geckotang/post/dialog-with-animation*/
+
+function closeModal()
+{
+    dialog = document.getElementsByClassName('errorAlert')[0];
+    dialog.classList.add('hide');
+    dialog.addEventListener('webkitAnimationEnd', function(){
+        dialog.classList.remove('hide');
+        dialog.close();
+        dialog.removeEventListener('webkitAnimationEnd',  arguments.callee, false);
+    }, false);
 }
 

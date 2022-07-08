@@ -146,7 +146,36 @@ body
 
 .search-dropdown:hover .search-dropdown-list
 {
-    display: block;
+    display: inline;
+    position:absolute;
+    -webkit-animation: showSearchDropdown 0.35s ease normal;
+    animation: showSearchDropdown 0.25s ease normal;
+}
+
+@keyframes showSearchDropdown
+{
+    from{ transform: translate(-50%, -50%) scale(0);}
+    to {transform: translate(0%, 0%) scale(1);}
+}
+
+.search-dropdown .search-dropdown-list
+{
+    animation: hideSearchDropdown 0.35s ease normal;
+    -webkit-animation: hideSearchDropdown 0.35s ease normal;
+    animation-fill-mode: forwards;
+    display: inline;
+}
+
+@keyframes hideSearchDropdown
+{
+    from
+    { 
+        transform: translate(0%, 0%) scale(1);
+    }
+    to 
+    {
+        transform: translate(-50%, -50%) scale(0); 
+    }
 }
 
 /* Dropdown search config */
@@ -211,12 +240,43 @@ body
 .dev-contact-list-item-link:hover .dev-contact-list-item-link:hover i
 {
     background-color: var(--primary-color);
-    transform: scale(1.2);
+    transform: scale(1.15);
 }
+
+/*Animacion barra de informacion*/
 
 .dev-info:hover .dev-contact-list
 {
-    display: inline-block;
+    display: inline;
+    position: absolute;
+    animation: showDevInfo 0.35s ease normal;
+    -webkit-animation: showDevInfo 0.35s ease normal;
+}
+
+.dev-info .dev-contact-list
+{
+    animation: hideDevInfo 0.35s ease normal;
+    -webkit-animation: hideDevInfo 0.35s ease normal;
+    animation-fill-mode: forwards;
+    display: inline;
+}
+
+@keyframes showDevInfo
+{
+    from{ transform: translate(-50%, 50%) scale(0);}
+    to {transform: translate(0%, 0%) scale(1);}
+}
+
+@keyframes hideDevInfo
+{
+    from
+    { 
+        transform: translate(0%, 0%) scale(1);
+    }
+    to 
+    {
+        transform: translate(-50%, 50%) scale(0); 
+    }
 }
 
 /* Footer config dev info end */
@@ -292,10 +352,27 @@ body
 
     .search-dropdown-list
     {
-        left: -300%;
-        top: 102%;
+        left: -310%;
+        top: 110%;
     }
 
+    @keyframes showSearchDropdown
+    {
+        from{ transform: translate(50%, -50%) scale(0);}
+        to {transform: translate(-0%, -0%) scaleY(1);}
+    }
+
+    @keyframes hideSearchDropdown
+    {
+        from
+        { 
+            transform: translate(0%, 0%) scale(1);
+        }
+        to 
+        {
+            transform: translate(50%, -50%) scale(0); 
+        }
+    }
     
     .dev-info-name span
     {
@@ -306,6 +383,30 @@ body
     {
         left: -15%;
         bottom: -200px;
+    }
+
+    @keyframes showDevInfo
+    {
+        from{ transform: translate(0%, -50%) scaleY(0);}
+        to {transform: translate(-0%, -0%) scaleY(1);}
+    }
+
+    @keyframes hideDevInfo
+    {
+        from
+        { 
+            transform: translate(0%, 0%) scaleY(1);
+        }
+        to 
+        {
+            transform: translate(0%, -50%) scaleY(0); 
+        }
+    }
+
+    .dev-info:not(:hover) .dev-contact-list
+    {
+        animation: hideDevInfo 0.5s ease normal;
+        animation-fill-mode: forwards;
     }
 
     .main-content

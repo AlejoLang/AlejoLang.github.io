@@ -80,8 +80,7 @@
                 </section>
             </footer>
         </aside>
-        <main class=
-        "main-content">
+        <main class="main-content">
             <header class="main-content-header">
                 <h1 class="main-title">Busqueda por nombre</h1>
                 <div class="inputs">
@@ -91,6 +90,14 @@
                     </button>
                 </div>
             </header>
+            <dialog class="errorAlert">
+                <p class="errorTitle">Error, nombre no encontrado</p>
+                <p class="errorMessage">
+                    El nombre que ha introducido no corresponde a un usuario 
+                    registrado en la pagina de <a href="https://www.chess.com/es">Chess.com</a> 
+                </p>
+                <button class="errorClose" onclick="closeModal()">Cerrar</button>
+            </dialog>
             <section class="results">
             </section>
         </main>

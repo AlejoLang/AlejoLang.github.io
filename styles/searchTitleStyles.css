@@ -13,6 +13,12 @@
     transition: 0.25s ease all;
 }
 
+.main-content
+{
+    position: relative;
+    width: 100%;
+}
+
 .title-selection
 {
     display: flex;
@@ -51,9 +57,88 @@
     border-radius: 10px;
 }
 
+.results-tit
+{
+    font-size: 1.4rem;
+}
+
+
+.paginator-div
+{
+    display: flex;
+    position: relative;
+    margin: 1rem auto 0;
+}
+
+.paginator-div > *
+{
+    margin: 0 0.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: none;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+.paginator-div > button
+{
+    cursor: pointer;
+}
+
+.paginator-div > button:hover
+{
+    background-color: var(--secondary-color);
+}
+
 .searchPlayersBtn:focus
 {
     background-color: var(--accent-color);
+}
+
+/*Config circulo de carga*/
+
+.lds-ring-div
+{
+    display: none;
+    width: 80px;
+    height: 80px;
+    margin: 10% auto;
+}
+
+.lds-dual-ring 
+{
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-dual-ring:after 
+{
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+    0% 
+    {
+        transform: rotate(0deg);
+    }
+    100% 
+    {
+        transform: rotate(360deg);
+    }
 }
 
 @media screen and (min-width:1000px) {
@@ -74,5 +159,15 @@
         height: 100%;
         margin: 0;
         font-size: 1.1rem;
+    }
+
+    .paginator-div
+    {
+        display: flex;
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        margin: 1rem auto 0;
     }
 }

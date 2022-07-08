@@ -31,7 +31,7 @@ async function displayUserPrincipalData()
             <div class="player-principal-info-icons">
                 ${userData.is_streamer ?
                     `<div class="player-principal-info-icon-twitch">
-                        <a href="twitch.tv" target="_blank" class="player-principal-info-twitch">
+                        <a href="${userData.twitch_url}" target="_blank" class="player-principal-info-twitch">
                         <i class="player-principal-info-twitch-icon fa fa-twitch"></i>
                         </a>
                     </div>

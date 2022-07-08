@@ -9,37 +9,38 @@
 
 h1
 {
-    text-align: center;
     font-size: 1.8rem;
+    text-align: center;
 }
 
 .main-content
 {
+    position: relative;
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
 }
 
 .inputs
 {
-    border: 1px solid var(--secondary-color);
-    background-color: var(--button-color);
-    border-radius: 10px;
-    margin: 2rem 0 3rem;
-    overflow: hidden;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
-    box-sizing: border-box;
+    margin: 2rem 0 3rem;
+    overflow: hidden;
+    background-color: var(--button-color);
+    border: 1px solid var(--secondary-color);
+    border-radius: 10px;
 }
 
 .search-inp
 {
-    padding: 0.5rem;
-    background-color: var(--button-color);
-    color: var(--secondary-color);
-    font-size: 1rem;
-    border: none;
     width: 80%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: var(--secondary-color);
+    background-color: var(--button-color);
+    border: none;
 }
 
 .search-inp::placeholder
@@ -55,17 +56,17 @@ h1
 
 .search-button
 {
-    width: 20%;
-    height: 100%;
-    border: none;
-    border-left: 1px solid var(--secondary-color);
-    background-color: var(--button-color);
-    font-size: 150%;
-    padding: 0.3rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 20%;
+    height: 100%;
+    padding: 0.3rem;
+    font-size: 150%;
     cursor: pointer;
+    background-color: var(--button-color);
+    border: none;
+    border-left: 1px solid var(--secondary-color);
 }
 
 .search-button:focus
@@ -73,25 +74,131 @@ h1
     background-color: var(--accent-color);
 }
 
+/* Configuracion del dialogo modal*/
+
+.errorAlert
+{
+    position: absolute;
+    padding: 1rem;
+    margin: auto;
+    background-color: var(--secondary-color);
+    border: 5px solid #111;
+    border-radius: 10px;
+}
+
+.errorAlert::backdrop
+{
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+/* Animacion de la apertura del dialog*/
+
+.errorAlert[open]
+{
+    animation: show 0.35s ease normal;
+}
+
+@keyframes show{
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.errorAlert[open]::backdrop
+{
+    animation: normal;
+    -webkit-animation: showBackdrop 0.35s ease normal;
+}
+
+@keyframes showBackdrop{
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/*Animacion de cerrado del dialog*/
+
+.errorAlert.hide
+{
+    animation: normal;
+    -webkit-animation: hide 0.35s ease normal;
+}
+
+@keyframes hide{
+    to {
+        transform: scale(0);
+    }
+}
+
+.errorAlert.hide::backdrop
+{
+    animation: normal;
+    -webkit-animation: hideBackdrop 0.35s ease normal;
+}
+
+@keyframes hideBackdrop{
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.errorTitle
+{
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.errorClose
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 3/1;
+    padding: 0.75rem;
+    margin-top: 1rem;   
+    margin-left: auto;
+    cursor: pointer;
+    background-color: var(--button-color);
+    border: none;
+    border-radius: 2px;
+}
+
+.errorClose:hover, .errorClose:focus
+{
+    background-color: var(--accent-color);
+}
+
+/* Estilos de la zona de resultados */
+
 .results
 {
-    width: 100%;
     display: grid;
-    gap: 2rem;
-    padding: 1rem;
     grid-template-columns: 0.8fr;
+    gap: 2rem;
     justify-content: center;
+    width: 100%;
+    padding: 1rem;
 }
 
 .user-listed
 {
     width: 100%;
-    overflow: hidden;
-    background-color: var(--secondary-color);
-    border-radius: 10px;
     margin: auto;
-    border: 1px solid var(--secondary-color);
+    overflow: hidden;
     text-decoration: none;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    border-radius: 10px;
 }
 
 .user-listed:hover
@@ -112,28 +219,30 @@ h1
 
 .user-listed-info
 {
-    height: 2.5em;
-    padding: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 2.5em;
+    padding: 0.5rem;
 }
 
 .user-listed-info-name
 {
-    text-overflow: elipsis;
     display: flex;
     align-items: center;
-    white-space: nowrap;
-    overflow: hidden;
-    height: 100%;
     width: 80%;
+    height: 100%;
+    overflow: hidden;
+    text-overflow: elipsis;
+    white-space: nowrap;
 }
 
 .user-listed-info-country-flag
 {
     height: 100%;
 }
+
+/*Configuracion responsive*/
 
 @media screen and (min-width: 1000px)
 {
@@ -159,6 +268,11 @@ h1
     .search-button:hover
     {
         background-color: var(--accent-color);
+    }
+
+    .errorClose
+    {
+        font-size: 1rem;
     }
 
     .results

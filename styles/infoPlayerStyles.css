@@ -99,8 +99,8 @@
     font-family: 'Roboto', sans-serif;
     font-size: 0.9rem;
     height: 1em;
-    left: -25%;
-    bottom: -2.5em;
+    left: -40%;
+    bottom: -2em;
     z-index: 30;
     width: fit-content;
     white-space: nowrap;
@@ -189,6 +189,11 @@
     display: flex;
     width: 100%;
     margin-top: 1rem;
+}
+
+.player-principal-info-other-joined i
+{
+    color: var(--text-color) !important;
 }
 
 .player-principal-info-other div
@@ -492,6 +497,7 @@
     padding: 0.5rem;
 }
 
+
 @media screen and (min-width: 1000px) {
     .main-content
     {
@@ -508,7 +514,7 @@
     .player-ponrincipal-info-icon-status:hover::after,
     .player-ponrincipal-info-icon-verified:hover::after
     {
-        top: -2.5em;
+        top: -0em;
     }
 
     .player-stats
@@ -516,4 +522,5 @@
         margin: 0 10ch;
         border-radius: 10px;
     }
+    
 }
