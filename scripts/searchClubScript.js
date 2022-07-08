@@ -79,7 +79,7 @@ async function displayResults(results)
         }
 
         const template =`
-                    <a href="./infoplayer.html?${results.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replaceAll(' ', '-')}" class="club-listed">
+                    <a href="./infoClub.html?${results.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replaceAll(' ', '-')}" class="club-listed">
                         <img src="${results.icon}" alt="${results.name}'s profile pic" class="club-listed-icon">
                         <div class="club-listed-info">
                             <p class="club-listed-info-name">${results.name}</p>
