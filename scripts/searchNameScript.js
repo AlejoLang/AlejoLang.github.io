@@ -29,7 +29,7 @@ function hideKeyboard(element) {
 //Funcion que busca y obtiene el JSON de la API de Chess.com
 //Tambien quita el focus en el boton de busqueda y borra el texto del input
 
-function search()
+async function search()
 {
     const url = 'https://api.chess.com/pub/player/' + searchInp.value.normalize("NFD")
                                                                     .replace(/[\u0300-\u036f]/g, "")
@@ -38,17 +38,26 @@ function search()
     searchBtn.blur();
 
     fetch(url)
-    .then(data => { return data.json(); })
-    .then(res => { displayResults(res); })
+        .then(data => { return data.json(); })
+        .then(res => { displayResults(res); })
 }
 
 //Obtiene un el codigo de pais del usuario
 
 async function getUserFlag(countryUrl)
 {
-    return fetch(countryUrl)
-    .then(data => { return data.json(); })
-    .then(res => { return res; })
+    return await fetch(countryUrl)
+        .then((data) => data.json())
+}
+
+async function UrlExists(url) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    if (http.status != 404)
+        return true;
+    else
+        return false;
 }
 
 // Muestra los resultados si se encontro el ususarion, caso contario 
@@ -65,28 +74,28 @@ async function displayResults(results)
 
     resultSec.innerHTML = '';
 
-    getUserFlag(results.country)
-    .then(res => {return res.name;})
-    .then(country => {
+    country = await getUserFlag(results.country);
+    
 
-        let countryFlagLink;
-        if(country != 'XX'){
-            countryFlagLink = "https://countryflagsapi.com/svg/" + country;
-        } else {
-            countryFlagLink = "./images/flag-default.jpg"
-        }
+    let countryFlagLink;
+    let urlext = await UrlExists( "https://countryflagsapi.com/svg/" + country.name)
+    if(urlext){
+        countryFlagLink = "https://countryflagsapi.com/svg/" + country.name;
+    } else {
+        countryFlagLink = "./images/flag-default.jpg"
+    }
 
-        const template =`
-                    <a href="./infoPlayer.html?${results.username}" class="user-listed">
-                        <img src="${results.avatar}" alt="${results.name}'s profile pic" class="user-listed-profile-pic">
-                        <div class="user-listed-info">
-                            <p class="user-listed-info-name">${results.username}</p>
-                            <img src="${countryFlagLink}" alt="${country}" class="user-listed-info-country-flag">
-                        </div>
-                    </a>`;
+    const template =`
+                <a href="./infoPlayer.html?${results.username}" class="user-listed">
+                    <img src="${results.avatar}" alt="${results.name}'s profile pic" class="user-listed-profile-pic">
+                    <div class="user-listed-info">
+                        <p class="user-listed-info-name">${results.username}</p>
+                        <img src="${countryFlagLink}" alt="${country.name}" class="user-listed-info-country-flag">
+                    </div>
+                </a>`;
     
     resultSec.insertAdjacentHTML('beforeend', template);
-    })
+    
 }
 
 /*Codigo de https://codepen.io/geckotang/post/dialog-with-animation*/
