@@ -51,6 +51,18 @@ async function searchPlayers()
     }
     searchBtn.blur();
 }
+
+async function UrlExists(url) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    if (http.status != 404)
+        return true;
+    else
+        return false;
+}
+
+
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function displayPlayers(players)
@@ -79,9 +91,11 @@ async function displayPlayers(players)
             if (!playerInfo.avatar) { playerInfo.avatar = './images/user-default.png'; }
 
             let userFlagCode = await getUserFlagCode(playerInfo.country);
-            userFlag = 'https://countryflagsapi.com/svg/' + userFlagCode.code;
+            let urlext = await UrlExists( "https://countryflagsapi.com/svg/" + userFlagCode.name)
 
-            if (userFlagCode.code == 'XX' || userFlagCode.name == 'International') {
+            userFlag = 'https://countryflagsapi.com/svg/' + userFlagCode.name;
+
+            if (!urlext) {
                 userFlag = './images/flag-default.jpg';
             }
 
@@ -90,7 +104,7 @@ async function displayPlayers(players)
                         <img src="${playerInfo.avatar}" alt="${playerInfo.name}'s profile pic" class="user-listed-profile-pic">
                         <div class="user-listed-info">
                             <p class="user-listed-info-name">${playerInfo.username}</p>
-                            <img src="${userFlag}" alt="${userFlagCode}" class="user-listed-info-country-flag">
+                            <img src="${userFlag}" alt="${userFlagCode.name}" class="user-listed-info-country-flag">
                         </div>
                     </a>`;
         };

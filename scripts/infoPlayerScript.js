@@ -19,10 +19,29 @@ async function getUserStats(urlStats)
     return data.json();
 }
 
+async function UrlExists(url) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    if (http.status != 404)
+        return true;
+    else
+        return false;
+}
+
+
 async function displayUserPrincipalData()
 {
     let userData = await getUserData('https://api.chess.com/pub/player/' + username);
     let userCountry = await getUserCountry(userData.country);
+
+    let urlext = await UrlExists( "https://countryflagsapi.com/svg/" + userCountry.name);
+
+    if (urlext) {
+        userCountry = "https://countryflagsapi.com/svg/" + userCountry.name;
+    } else {
+        userCountry = './images/flag-default.jpg'
+    }
 
     const templatePrincipalInfoHeader = 
         `
@@ -67,10 +86,7 @@ async function displayUserPrincipalData()
                 <div class="player-principal-info-location">
                     <i class="player-principal-info-location-icon fa-solid fa-location-dot"></i>
                     <p class="player-principal-info-city">${userData.location}</p>
-                    <img src="${userCountry.code != "XX" ? 
-                        `https://countryflagsapi.com/svg/${userCountry.name}` : 
-                        './images/flag-defult.jpg'} " 
-                    alt="${userCountry.code}" class="player-principal-info-flag">
+                    <img src="${userCountry}" class="player-principal-info-flag">
                 </div>
                 ` : ''} 
         </div>

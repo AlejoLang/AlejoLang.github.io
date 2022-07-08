@@ -39,17 +39,26 @@ function search()
     searchBtn.blur();
 
     fetch(url)
-    .then(data => { return data.json(); })
-    .then(res => { displayResults(res); })
+        .then((data) =>  data.json())
+        .then(res => { displayResults(res);})
 }
 
 //Obtiene un el codigo de pais del usuario
 
 async function getUserFlag(countryUrl)
 {
-    return fetch(countryUrl)
-    .then(data => { return data.json(); })
-    .then(res => { return res; })
+    return await fetch(countryUrl)
+        .then((data) =>  data.json())
+}
+
+async function UrlExists(url) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    if (http.status != 404)
+        return true;
+    else
+        return false;
 }
 
 // Muestra los resultados si se encontro el ususarion, caso contario 
@@ -66,24 +75,22 @@ async function displayResults(results)
 
     resultSec.innerHTML = '';
 
-    getUserFlag(results.country)
-    .then(res => {return res.name;})
-    .then(country => {
-
-        let countryFlagLink;
-        console.log(country);
-        if(country != 'XX' && country != "International"){
-            countryFlagLink = "https://countryflagsapi.com/svg/" + country;
-        } else {
-            countryFlagLink = "./images/flag-default.jpg"
-        }
+    country = await getUserFlag(results.country);
+    
+    let countryFlagLink;
+    let urlext = await UrlExists( "https://countryflagsapi.com/svg/" + country.name)
+    if(urlext){
+        countryFlagLink = "https://countryflagsapi.com/svg/" + country.name;
+    } else {
+        countryFlagLink = "./images/flag-default.jpg"
+    }
 
         const template =`
                     <a href="./infoClub.html?${results.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replaceAll(' ', '-')}" class="club-listed">
                         <img src="${results.icon}" alt="${results.name}'s profile pic" class="club-listed-icon">
                         <div class="club-listed-info">
                             <p class="club-listed-info-name">${results.name}</p>
-                            <img src="${countryFlagLink}" alt="${country}" class="club-listed-info-country-flag">
+                            <img src="${countryFlagLink}" alt="${country.name}" class="club-listed-info-country-flag">
                             <div class = "club-listed-info-members">
                                 <i class="fa-solid fa-users"></i>
                                 ${results.members_count}
@@ -93,7 +100,7 @@ async function displayResults(results)
                     </a>`;
     
     resultSec.insertAdjacentHTML('beforeend', template);
-    })
+    
 }
 
 /*Codigo de https://codepen.io/geckotang/post/dialog-with-animation*/
