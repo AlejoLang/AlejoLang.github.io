@@ -77,7 +77,7 @@ async function displayPlayers(players)
             
             let playerInfo = await getPlayerInfo(url);
 
-            if (!playerInfo.avatar) { playerInfo.avatar = './Images/user-default.png'; }
+            if (!playerInfo.avatar) { playerInfo.avatar = './images/user-default.png'; }
 
             let userFlagCode = await getUserFlagCode(playerInfo.country);
             userFlag = 'https://countryflagsapi.com/svg/' + userFlagCode.code;

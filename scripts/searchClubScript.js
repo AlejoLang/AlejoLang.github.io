@@ -62,7 +62,7 @@ async function displayResults(results)
         document.getElementsByClassName('errorAlert')[0].showModal();
         return;
     } 
-    if(!results.icon) {results.icon = './Images/user-default.png'} // Si el usuario no tiene un avatar, se le asigna uno default
+    if(!results.icon) {results.icon = './images/club-default.jpg'} // Si el club no tiene un avatar, se le asigna uno default
 
     resultSec.innerHTML = '';
 
