@@ -47,7 +47,7 @@ async function searchPlayers()
 
         inputSelector.value = '';
     } else {
-        alert('No se ha seleccionado una opcion');
+        document.getElementsByClassName('errorAlert')[0].showModal();
     }
     searchBtn.blur();
 }
@@ -147,4 +147,17 @@ async function handlePaginator(action)
             displayPlayers(playersList.players);
         }
     }
+}
+
+/*Codigo de https://codepen.io/geckotang/post/dialog-with-animation*/
+
+function closeModal()
+{
+    dialog = document.getElementsByClassName('errorAlert')[0];
+    dialog.classList.add('hide');
+    dialog.addEventListener('webkitAnimationEnd', function(){
+        dialog.classList.remove('hide');
+        dialog.close();
+        dialog.removeEventListener('webkitAnimationEnd',  arguments.callee, false);
+    }, false);
 }
