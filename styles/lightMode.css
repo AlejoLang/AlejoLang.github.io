@@ -1,0 +1,13 @@
+:root
+{
+    filter: invert(1) hue-rotate(180deg) !important;
+}
+img, video
+{
+    filter: invert(1) hue-rotate(180deg) !important;
+}
+
+.exempt
+{
+    filter: invert(1) hue-rotate(180deg) !important;
+}

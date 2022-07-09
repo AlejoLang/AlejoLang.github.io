@@ -77,7 +77,6 @@ async function displayPlayers(players)
 
     for(let i = (index - 1) * 20; i < index * 20; i++){
         
-        console.log(i, maxIndex);
         if(control){interruption = true; control = false; return 0;}
         if(i >= players.length){break;}
 

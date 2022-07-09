@@ -146,7 +146,6 @@ async function displayUserStats()
         totalLoss = 0,
         totalDraw = 0;
 
-    console.log(userStats)
     let statsDivInfo = {
         chess_daily: {name:'Diario', icon:'fa-sun'},
         chess960_daily: {name:'Diario 960', icon:'fa-shuffle'},
@@ -158,9 +157,9 @@ async function displayUserStats()
     };
 
     Object.keys(userStats).forEach(stat => {
-        console.log(stat)
+        
         statValue = userStats[stat];
-        console.log(Object.entries(statValue))
+        
         if(Object.entries(statValue).length == 0){return;}
         let templateStats = `
         <div class="player-stats-blitz player-stats-info">
