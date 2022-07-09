@@ -17,3 +17,6 @@ Esta es una pagina creada utilizando al API de [Chess.com](https://chess.com), l
     * Estadisticas sobre todos los modos de juego que el usuario juegue
 * Buscar usuarios que tengan un titulo (Gran Maestro o Gran Maestra Femenina por ejemplo)
 * Buscar un club registrado en la página de [Chess.com](https://chess.com)
+
+## Link a la página
+[Unofficial Chess.com](https://alejolang.github.io/)
