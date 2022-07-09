@@ -33,7 +33,7 @@ async function searchPlayers()
         index = 1;
         document.getElementsByClassName('paginator-index')[0].textContent = index;
         control = true;
-        delay(1000);
+        await delay(1000);
 
         let url = 'https://api.chess.com/pub/titled/' + inputSelector.value;
         playersList = await getTitledPlayers(url);
@@ -78,7 +78,7 @@ async function displayPlayers(players)
     for(let i = (index - 1) * 20; i < index * 20; i++){
         
         console.log(i, maxIndex);
-        if(control){console.log('a'); interruption=true; control = false; return 0;}
+        if(control){interruption = true; control = false; return 0;}
         if(i >= players.length){break;}
 
         await displayPlayer(players[i]);
@@ -116,27 +116,35 @@ async function displayPlayers(players)
 
 async function handlePaginator(action)
 {
-    control = true;
-    delay(2000);
-    console.log('Cambio del control a true');
     indexNum = document.getElementsByClassName('paginator-index')[0];
     if(maxIndex) {
         if(action == 'goFirstPage' && index != 1) {
+            control = true;
+            await delay(1000);
             index = 1;
             indexNum.textContent = index;
+            displayPlayers(playersList.players);
         }
         if(action == 'returnPage' && index > 1) {
+            control = true;
+            await delay(1000);
             index--;
             indexNum.textContent = index;
+            displayPlayers(playersList.players);
         }
-        if(action == 'nextPage' && index <= maxIndex) {
+        if(action == 'nextPage' && index < maxIndex) {
+            control = true;
+            await delay(1000);
             index++;
             indexNum.textContent = index;
+            displayPlayers(playersList.players);
         }
-        if(action == 'goLastPage' && index != maxIndex) {
+        if(action == 'goLastPage' && index != maxIndex && maxIndex > 1) {
+            control = true;
+            await delay(1000);
             index = maxIndex;
             indexNum.textContent = index;
+            displayPlayers(playersList.players);
         }
-        displayPlayers(playersList.players);
     }
 }
