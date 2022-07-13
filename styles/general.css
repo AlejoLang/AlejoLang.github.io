@@ -1,11 +1,11 @@
 /* General config */
 *
 {
-    --accent-color: #6c8e25;
-    --primary-color: #312e2b;
-    --secondary-color: #262421;
-    --button-color: #4d7427;
-    --text-color: #cfcfce;
+    --accent-color: #058C42;
+    --primary-color: #32322C;
+    --secondary-color: #37392E;
+    --button-color: #6DA34D;
+    --text-color: #FBF5F3;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
