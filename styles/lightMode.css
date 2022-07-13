@@ -1,13 +1,9 @@
-:root
+*
 {
-    filter: invert(1) hue-rotate(180deg) !important;
-}
-img, video
-{
-    filter: invert(1) hue-rotate(180deg) !important;
-}
-
-.exempt
-{
-    filter: invert(1) hue-rotate(180deg) !important;
+    --accent-color: #058C42 !important;
+    --primary-color: #F6F4F4 !important;
+    --secondary-color: #DFDFE2 !important;
+    --button-color: #6DA34D !important;
+    --text-color: #020300 !important;
+    --third-color: #F8FFEB !important;
 }

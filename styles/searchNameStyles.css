@@ -30,14 +30,14 @@ h1
     width: 80%;
     padding: 0.5rem;
     font-size: 1rem;
-    color: var(--secondary-color);
+    color: var(--text-color);
     background-color: var(--button-color);
     border: none;
 }
 
 .search-inp::placeholder
 {
-    color: var(--secondary-color);
+    color: var(--text-color);
 }
 
 .search-inp:focus
@@ -91,12 +91,7 @@ h1
 
 .user-listed:hover
 {
-    box-shadow: 0px 0px 10px #000;
-}
-
-.user-listed:hover .user-listed-info-name
-{
-    color: #fff;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
 }
 
 .user-listed-profile-pic
