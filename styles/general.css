@@ -431,14 +431,14 @@ body
 /* Scrollbar Design */
 
 ::-webkit-scrollbar {
-  width: 14px;
-  height: 6px;
+    width: 14px;
+    height: 6px;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--text-color);
-  border-radius: 5000px;
-  border: 4px transparent solid;
-  background-clip: padding-box;
+    background: var(--text-color);
+    border-radius: 5000px;
+    border: 4px transparent solid;
+    background-clip: padding-box;
 }
 
 
