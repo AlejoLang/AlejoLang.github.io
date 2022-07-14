@@ -57,13 +57,13 @@ async function displayUserPrincipalData()
                     ` : ''
                 }
                 ${userData.status == 'staff' ?
-                    `<div class="player-ponrincipal-info-icon-status">
+                    `<div class="player-principal-info-icon-status">
                         <i class="player-principal-info-stat fa fa-hammer"></i>
                     </div>
                     ` : ''
                 }
                 ${userData.verified == true ?
-                    `<div class="player-ponrincipal-info-icon-verified">
+                    `<div class="player-principal-info-icon-verified">
                         <i class="player-principal-info-verified fa fa-solid fa-check"></i>
                     </div>
                     ` : ''
