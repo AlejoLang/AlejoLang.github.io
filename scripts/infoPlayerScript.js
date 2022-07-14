@@ -35,6 +35,7 @@ async function UrlExists(url) {
         return false;
 }
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function displayUserPrincipalData()
 {
@@ -137,7 +138,8 @@ async function displayUserPrincipalData()
         </section>
         `;
     
-    mainContent.insertAdjacentHTML('afterbegin', templatePlayerPrincipal)
+    mainContent.insertAdjacentHTML('afterbegin', templatePlayerPrincipal);
+    return 0;
 }
 
 async function displayUserStats()
@@ -314,7 +316,8 @@ async function displayUserStats()
                 <p class="player-stats-content-gamesplayed-result">
                 ${fide ?? '0'}
             </p>
-        </div>`)
+        </div>`);
+    return 0;
 }
 
 async function displayUserClubs(){
@@ -343,7 +346,8 @@ async function displayUserClubs(){
         </section>
     `;
 
-    mainContent.insertAdjacentHTML('beforeend', templateUserClubsFinal)
+    mainContent.insertAdjacentHTML('beforeend', templateUserClubsFinal);
+    return 0;
 }
 
 function transformLastOnlineHours(time)
@@ -391,6 +395,13 @@ function openStatDropdown(e)
     btn.parentElement.blur();
 }
 
-displayUserPrincipalData();
-displayUserStats();
-displayUserClubs(); 
+window.addEventListener('onload', start());
+
+async function start()
+{
+    displayUserPrincipalData();
+    await delay(1000);
+    displayUserStats();
+    await delay(1000);
+    displayUserClubs(); 
+}
