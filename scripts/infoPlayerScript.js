@@ -19,6 +19,12 @@ async function getUserStats(urlStats)
     return data.json();
 }
 
+async function getUserClubs(urlClubs)
+{
+    let data = await fetch(urlClubs);
+    return data.json();
+}
+
 async function UrlExists(url) {
     var http = new XMLHttpRequest();
     http.open('HEAD', url, false);
@@ -295,10 +301,7 @@ async function displayUserStats()
         <div class="player-stats-mainHeader">
             <p class="player-stats-tittext">Estadisticas</p>
             <div class="player-stats-mainHeader-games">
-            <p class="player-stats-content-text">Partidas Totales Jugadas:</p>
-                <p class="player-stats-mainHeader-gamesplayed-result">
-                ${totalWin + totalLoss + totalDraw}
-            </p>
+            <p class="player-stats-content-text">Partidas Totales Jugadas: ${totalWin + totalLoss + totalDraw}</p>
             </div>
         </div>
     `;
@@ -312,6 +315,35 @@ async function displayUserStats()
                 ${fide ?? '0'}
             </p>
         </div>`)
+}
+
+async function displayUserClubs(){
+
+    let userClubs = await getUserClubs('https://api.chess.com/pub/player/' + username + '/clubs');
+    if(!userClubs){return;}
+    let templateUserClubs = ``;
+    
+    Object.values(userClubs.clubs).forEach(club => {
+        
+        templateUserClubs += `
+            <a class="player-clubs-listedClub" href="./infoClub?${club.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replaceAll(' ', '-')}">
+                <img src="${club.icon}" alt="${club.name + ' img'}" class="player-clubs-listedClub-clubImg">
+                <p class="player-clubs-listedClubs-clubName">${club.name}</p>
+            </a>
+        `;
+    });
+
+    let templateUserClubsFinal = `
+        <section class="player-clubs">
+            <div class="player-clubs-info">
+                <p class="player-clubs-info-title">Clubes</p>
+                <p class="player-clubs-info-totalClubs">Clubes totales: ${userClubs.clubs.length}</p>
+            </div>
+            ${templateUserClubs}
+        </section>
+    `;
+
+    mainContent.insertAdjacentHTML('beforeend', templateUserClubsFinal)
 }
 
 function transformLastOnlineHours(time)
@@ -360,4 +392,5 @@ function openStatDropdown(e)
 }
 
 displayUserPrincipalData();
-displayUserStats()
+displayUserStats();
+displayUserClubs(); 
