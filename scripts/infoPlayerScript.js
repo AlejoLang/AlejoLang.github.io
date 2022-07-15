@@ -25,16 +25,6 @@ async function getUserClubs(urlClubs)
     return data.json();
 }
 
-async function UrlExists(url) {
-    var http = new XMLHttpRequest();
-    http.open('HEAD', url, false);
-    http.send();
-    if (http.status != 404)
-        return true;
-    else
-        return false;
-}
-
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function displayUserPrincipalData()
@@ -42,12 +32,16 @@ async function displayUserPrincipalData()
     let userData = await getUserData('https://api.chess.com/pub/player/' + username);
     let userCountry = await getUserCountry(userData.country);
 
-    let urlext = await UrlExists( "https://countryflagsapi.com/svg/" + userCountry.name);
+    let countryFlagLink = 'https://countryflagsapi.com/svg/' +  userCountry.name;
 
-    if (urlext) {
-        userCountry = "https://countryflagsapi.com/svg/" + userCountry.name;
-    } else {
-        userCountry = './images/flag-default.jpg'
+    if ( userCountry.name == 'Russia') {
+        countryFlagLink = 'https://countryflagsapi.com/svg/' +  userCountry.code;
+    } else if( userCountry.code == 'FK'){
+        userCountry.name = 'Argentina';
+        countryFlagLink = 'https://countryflagsapi.com/svg/Argentina';
+    } else if( userCountry.code == 'XX' ||  userCountry.name == 'International' || !userCountry.code){
+        userCountry.name = 'International';
+        countryFlagLink = './images/flag-default';
     }
 
     const templatePrincipalInfoHeader = 
@@ -88,14 +82,13 @@ async function displayUserPrincipalData()
                 </p> ` : ''
             }
             
-            ${userData.location && userCountry ? 
-                `
-                <div class="player-principal-info-location">
+            
+            <div class="player-principal-info-location">
+                ${userData.location ? `
                     <i class="player-principal-info-location-icon fa-solid fa-location-dot"></i>
-                    <p class="player-principal-info-city">${userData.location}</p>
-                    <img src="${userCountry}" class="player-principal-info-flag">
+                    <p class="player-principal-info-city">${userData.location}</p>` : ''}
+                    <img src="${countryFlagLink}" class="player-principal-info-flag">
                 </div>
-                ` : ''} 
         </div>
         `;
     

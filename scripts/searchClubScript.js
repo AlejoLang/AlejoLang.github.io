@@ -51,16 +51,6 @@ async function getUserFlag(countryUrl)
         .then((data) =>  data.json())
 }
 
-async function UrlExists(url) {
-    var http = new XMLHttpRequest();
-    http.open('HEAD', url, false);
-    http.send();
-    if (http.status != 404)
-        return true;
-    else
-        return false;
-}
-
 // Muestra los resultados si se encontro el ususarion, caso contario 
 // alerta que el usuario no se encontro
 
@@ -77,12 +67,16 @@ async function displayResults(results)
 
     country = await getUserFlag(results.country);
     
-    let countryFlagLink;
-    let urlext = await UrlExists( "https://countryflagsapi.com/svg/" + country.name)
-    if(urlext){
-        countryFlagLink = "https://countryflagsapi.com/svg/" + country.name;
-    } else {
-        countryFlagLink = "./images/flag-default.jpg"
+    let countryFlagLink = 'https://countryflagsapi.com/svg/' + country.name;
+
+    if (country.name == 'Russia') {
+        countryFlagLink = 'https://countryflagsapi.com/svg/' + country.code;
+    } else if(country.code == 'FK'){
+        country.name = 'Argentina';
+        countryFlagLink = 'https://countryflagsapi.com/svg/Argentina';
+    } else if(country.code == 'XX' || country.name == 'International' || !country.code){
+        country.name = 'International';
+        countryFlagLink = './images/flag-default';
     }
 
         const template =`
