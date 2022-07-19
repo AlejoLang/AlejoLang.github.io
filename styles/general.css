@@ -35,7 +35,7 @@ body
     height: 100vh;
     position: sticky;
     border: none;
-    z-index: 1;
+    z-index: 300;
     top: 0;
     width: 15%;
     padding: 1rem;
@@ -453,11 +453,13 @@ body
     .aside-main
     {
         width: 100vw;
-        height: 100px;
+        height: 15vh;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
         border-bottom: 2px solid #000;
+        position: sticky;
+        top: -1px;
     }
 
     .header
