@@ -78,9 +78,14 @@ async function displayResults(results)
         country.name = 'International';
         countryFlagLink = './images/flag-default.jpg';
     }
-
+    console.log(results.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replaceAll(' ', '-').replaceAll('.', '-'))
         const template =`
-                    <a href="./infoClub.html?${results.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replaceAll(' ', '-')}" class="club-listed">
+                    <a href="./infoClub.html?${results.name
+                                                    .normalize("NFD")
+                                                    .replace(/[\u0300-\u036f]/g, "")
+                                                    .replaceAll(' ', '-')
+                                                    .replaceAll('.', '-')}
+                    " class="club-listed">
                         <img src="${results.icon}" alt="${results.name}'s profile pic" class="club-listed-icon">
                         <div class="club-listed-info">
                             <p class="club-listed-info-name">${results.name}</p>
