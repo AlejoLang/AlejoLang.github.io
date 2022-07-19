@@ -33,14 +33,14 @@ function search()
 {
     const url = 'https://api.chess.com/pub/club/' + searchInp.value.normalize("NFD")
                                                                     .replace(/[\u0300-\u036f]/g, "")
+                                                                    .trim()
                                                                     .replaceAll(' ', '-');
     
     searchInp.value = "";
     searchBtn.blur();
-
     fetch(url)
         .then((data) =>  data.json())
-        .then(res => { displayResults(res);})
+        .then(res => {displayResults(res);})
 }
 
 //Obtiene un el codigo de pais del usuario
@@ -76,7 +76,7 @@ async function displayResults(results)
         countryFlagLink = 'https://countryflagsapi.com/svg/Argentina';
     } else if(country.code == 'XX' || country.name == 'International' || !country.code){
         country.name = 'International';
-        countryFlagLink = './images/flag-default';
+        countryFlagLink = './images/flag-default.jpg';
     }
 
         const template =`
