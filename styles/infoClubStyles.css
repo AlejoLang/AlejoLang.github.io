@@ -12,13 +12,13 @@
 
 .main-info-clubPrincipal
 {
+    display: flex;
+    align-items: center;
     width: 100%;
     height: 30vh;
     padding: 0.75rem;
-    background-color: var(--secondary-color);
     overflow: visible;
-    display: flex;
-    align-items: center;
+    background-color: var(--secondary-color);
 }
 
 .main-info-clubPrincipal-clubImg
@@ -32,25 +32,25 @@
 .main-info-clubPrincipal-clubInfo
 {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     height: 100%;
-    flex-direction: column;
     padding-left: 1rem;
     border-left: 2px solid #222;
-    justify-content: space-between;
 }
 
 .main-info-clubPrincipal-clubInfo-header
 {
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .main-info-clubPrincipal-clubInfo-clubName
 {
-    font-size: 1.8rem;
     margin-right: 1rem;
+    font-size: 1.8rem;
 }
 
 .main-info-clubPrincipal-clubInfo-clubFlag
@@ -62,20 +62,20 @@
 .main-info-clubPrincipal-clubInfo-other
 {
     display: grid;
-    padding: 0.5rem;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     width: 100%;
     height: 100%;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    padding: 0.5rem;
 }
 
 .main-info-clubPrincipal-clubInfo-other > div 
 {
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    position: relative;
+    justify-content: center;
     padding: 0.25rem;
     text-align: center;
 }
@@ -88,26 +88,26 @@
 
 .main-info-clubPrincipal-clubInfo-avgDailyRating:hover::after
 {
-    content: 'Prom. de puntaje diario';
     position: absolute;
-    font-size: 0.9rem;
-    height: 1em;
     top: -2em;
-    width: fit-content;
-    white-space: nowrap;
-    background-color: var(--third-color);
-    border-radius: 10px;
     z-index: 10;
-    padding: 0.5rem;
     display: flex;
     align-items: center;
+    width: fit-content;
+    height: 1em;
+    padding: 0.5rem;
+    font-size: 0.9rem;
     text-align: center;
+    white-space: nowrap;
+    content: 'Prom. de puntaje diario';
+    background-color: var(--third-color);
+    border-radius: 10px;
 }
 
 .main-info-clubPrincipal-clubInfo-members
 {
-    border-left: 1px solid #222;
     border-bottom: 1px solid #222;
+    border-left: 1px solid #222;
 }
 
 .main-info-clubPrincipal-clubInfo-members i
@@ -117,101 +117,107 @@
 
 .main-info-clubPrincipal-clubInfo-members:hover::after
 {
-    content: 'Miembros';
     position: absolute;
-    font-size: 0.9rem;
-    z-index: 10;
-    height: 1em;
     top: -2em;
-    width: fit-content;
-    white-space: nowrap;
-    background-color: var(--third-color);
-    border-radius: 10px;
-    padding: 0.5rem;
+    z-index: 10;
     display: flex;
     align-items: center;
+    width: fit-content;
+    height: 1em;
+    padding: 0.5rem;
+    font-size: 0.9rem;
     text-align: center;
+    white-space: nowrap;
+    content: 'Miembros';
+    background-color: var(--third-color);
+    border-radius: 10px;
 }
 
 .main-info-clubPrincipal-clubInfo-creationDate
 {
-    border-right: 1px solid #222;
     border-top: 1px solid #222;
+    border-right: 1px solid #222;
 }
 
 .main-info-clubPrincipal-clubInfo-creationDate:hover::after
 {
-    content: 'Fecha de creación';
     position: absolute;
-    font-size: 0.9rem;
-    z-index: 10;
-    height: 1em;
     top: -2em;
-    width: fit-content;
-    white-space: nowrap;
-    background-color: var(--third-color);
-    border-radius: 10px;
-    padding: 0.5rem;
+    z-index: 10;
     display: flex;
     align-items: center;
+    width: fit-content;
+    height: 1em;
+    padding: 0.5rem;
+    font-size: 0.9rem;
     text-align: center;
+    white-space: nowrap;
+    content: 'Fecha de creación';
+    background-color: var(--third-color);
+    border-radius: 10px;
 }
 
 .main-info-clubPrincipal-clubInfo-lastActivity
 {
-    border-left: 1px solid #222;
     border-top: 1px solid #222;
+    border-left: 1px solid #222;
 }
 
 .main-info-clubPrincipal-clubInfo-lastActivity:hover::after
 {
-    content: 'Última actividad';
     position: absolute;
-    font-size: 0.9rem;
-    z-index: 10;
-    height: 1em;
     top: -2em;
-    width: fit-content;
-    white-space: nowrap;
-    background-color: var(--third-color);
-    border-radius: 10px;
-    padding: 0.5rem;
+    z-index: 10;
     display: flex;
     align-items: center;
+    width: fit-content;
+    height: 1em;
+    padding: 0.5rem;
+    font-size: 0.9rem;
     text-align: center;
+    white-space: nowrap;
+    content: 'Última actividad';
+    background-color: var(--third-color);
+    border-radius: 10px;
 }
 
 .main-info-clubDescription
 {
-    height: fit-content;
     width: 100%;
-    background-color: var(--secondary-color);
-    margin-top: 1rem;
+    height: fit-content;
     padding: 0.75rem;
+    margin-top: 1rem;
+    background-color: var(--secondary-color);
 }
 
 .main-info-clubDescription-title
 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
     padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
     border-bottom: 2px solid #222;
+}
+
+
+.main-info-clubDescription-description *
+{
+    color: unset;
 }
 
 .main-info-clubAdmins
 {
-    height: fit-content;
     width: 100%;
-    background-color: var(--secondary-color);
-    margin-top: 1rem;
+    height: fit-content;
     padding: 0.75rem;
+    margin-top: 1rem;
+    background-color: var(--secondary-color);
 }
 
 .main-info-clubAdmins-title
 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
     padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
     border-bottom: 2px solid #222;
 }
 
@@ -222,15 +228,15 @@
 
 .main-info-clubAdmins-adminList-admin
 {
-    width: 100%;
-    height: 4rem;
-    overflow: hidden;
-    margin: 0.75rem 0;
-    border-radius: 10px;
-    padding: 0.25rem;
     display: flex;
     align-items: center;
+    width: 100%;
+    height: 4rem;
+    padding: 0.25rem;
+    margin: 0.75rem 0;
+    overflow: hidden;
     text-decoration: none;
+    border-radius: 10px;
 }
 
 .main-info-clubAdmins-adminList-admin:hover
@@ -260,24 +266,24 @@
 
     .main-info
     {
-        height: 65vh;
-        width: 100%;
         display: grid;
-        grid-template-columns: 3fr 1fr;
-        grid-template-rows: 1fr 0.8fr;
         grid-template-areas: "main admins"
                             "description admins";
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 3fr 1fr;
         gap: 1rem;
+        width: 100%;
+        height: 65vh;
     }
 
     .main-info-clubPrincipal
     {
         grid-area: main;
-        overflow: hidden;
-        border-radius: 10px;
+        height: 100%;
         padding: 1rem;
         margin: 0;
-        height: 100%;
+        overflow: hidden;
+        border-radius: 10px;
     }
 
     .main-info-clubPrincipal-clubImg
@@ -287,16 +293,16 @@
 
     .main-info-clubPrincipal-clubInfo-other
     {
-        grid-template-columns: repeat(4, 1fr);
         grid-template-rows: 1fr;
+        grid-template-columns: repeat(4, 1fr);
         height: 50%;
     }
 
     .main-info-clubPrincipal-clubInfo-other > div:not(:nth-child(1), :nth-last-child(1))
     {
         border: none;
-        border-left: 1px solid #222;
         border-right: 1px solid #222;
+        border-left: 1px solid #222;
     }
 
     .main-info-clubPrincipal-clubInfo-other > div:nth-child(1),
@@ -308,31 +314,47 @@
 
     .main-info-clubDescription
     {
+        display: flex;
+        flex-direction: column;
         grid-area: description;
-        overflow: scroll;
-        border-radius: 10px;
+        height: 100%;
         padding: 1rem;
         margin: 0;
-        height: 100%;
+        overflow: hidden;
+        border-radius: 10px;
     }
 
-    .main-info-clubDescription::-webkit-scrollbar {
+    .main-info-clubDescription-description
+    {
+        height: 100%;
+        overflow-y: scroll;
+    }
+
+    .main-info-clubDescription-description::-webkit-scrollbar {
         width: 10px;
         height: 6px;
     }
 
     .main-info-clubAdmins
     {
+        display: flex;
+        flex-direction: column;
         grid-area: admins;
-        overflow: hidden;
-        border-radius: 10px;
+        height: 100%;
         padding: 1rem;
         margin: 0;
-        height: 100%;
-        overflow-x: scroll;
+        overflow: hidden;
+        border-radius: 10px;
     }
 
-    .main-info-clubAdmins::-webkit-scrollbar {
+    .main-info-clubAdmins-adminsList
+    {
+        height: 100%;
+        overflow-x: none;
+        overflow-y: scroll;
+    }
+
+    .main-info-clubAdmins-adminsList::-webkit-scrollbar {
         width: 10px;
         height: 6px;
     }

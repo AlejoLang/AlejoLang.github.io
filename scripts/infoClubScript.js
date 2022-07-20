@@ -77,14 +77,16 @@ async function displayClubPrincipalInformation(clubData){
 }
 
 async function displayClubDescription(clubDescription){
+    console.log(clubDescription)
     const template = `
         <div class="main-info-clubDescription">
             <p class="main-info-clubDescription-title">Descripción: </p>
-            <p class="main-info-clubDescription-description">
+            <div class="main-info-clubDescription-description">
                 ${clubDescription}
-            </p>
+            </div>
         </div>
     `;
+    console.log(template)
     return template;
 }
 
@@ -125,7 +127,7 @@ async function displayClubPrincipalData(){
     const clubPrincipalInfo = await displayClubPrincipalInformation(clubData);
     const clubDescription = await displayClubDescription(clubData.description);
     const clubAdmins = await displayClubAdmins(clubData.admin);
-
+    console.log(clubDescription)
     const clubPrincipalData = `
         <div class="main-info">
             ${clubPrincipalInfo}
