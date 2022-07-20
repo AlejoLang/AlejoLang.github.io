@@ -34,7 +34,8 @@ function search()
     const url = 'https://api.chess.com/pub/club/' + searchInp.value.normalize("NFD")
                                                                     .replace(/[\u0300-\u036f]/g, "")
                                                                     .trim()
-                                                                    .replaceAll(' ', '-');
+                                                                    .replaceAll(' ', '-')
+                                                                    .replaceAll('.', '-');
     
     searchInp.value = "";
     searchBtn.blur();
@@ -78,7 +79,7 @@ async function displayResults(results)
         country.name = 'International';
         countryFlagLink = './images/flag-default.jpg';
     }
-    console.log(results.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replaceAll(' ', '-').replaceAll('.', '-'))
+    
         const template =`
                     <a href="./infoClub.html?${results.name
                                                     .normalize("NFD")
