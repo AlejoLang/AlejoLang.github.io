@@ -392,9 +392,9 @@ window.addEventListener('onload', start());
 
 async function start()
 {
-    displayUserPrincipalData();
-    await delay(10);
+    await displayUserPrincipalData();
+    await delay(1);
     displayUserStats();
-    await delay(10);
+    await delay(1);
     displayUserClubs(); 
 }
