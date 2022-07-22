@@ -394,7 +394,7 @@ async function start()
 {
     await displayUserPrincipalData();
     await delay(1);
-    displayUserStats();
+    await displayUserStats();
     await delay(1);
     displayUserClubs(); 
 }
