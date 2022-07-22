@@ -393,8 +393,6 @@ window.addEventListener('onload', start());
 async function start()
 {
     displayUserPrincipalData();
-    await delay(1000);
     displayUserStats();
-    await delay(1000);
     displayUserClubs(); 
 }
