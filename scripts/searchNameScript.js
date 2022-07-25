@@ -33,7 +33,9 @@ async function search()
 {
     const url = 'https://api.chess.com/pub/player/' + searchInp.value.normalize("NFD")
                                                                     .replace(/[\u0300-\u036f]/g, "")
-                                                                    .replaceAll(' ', '-');
+                                                                    .trim()
+                                                                    .replaceAll(' ', '-')
+                                                                    .replaceAll('.', '-');
     searchInp.value = "";
     searchBtn.blur();
 
