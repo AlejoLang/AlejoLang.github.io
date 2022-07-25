@@ -322,7 +322,10 @@ async function displayUserClubs(){
     Object.values(userClubs.clubs).forEach(club => {
         
         templateUserClubs += `
-            <a class="player-clubs-listedClub" href="./infoClub?${club.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replaceAll(' ', '-')}">
+            <a class="player-clubs-listedClub" href="./infoClub?${club.name.normalize("NFD")
+                                                                            .replace(/[\u0300-\u036f]/g, "")
+                                                                            .replaceAll(' ', '-')
+                                                                            .replaceAll('.', '-')}">
                 <img src="${club.icon}" alt="${club.name + ' img'}" class="player-clubs-listedClub-clubImg">
                 <p class="player-clubs-listedClubs-clubName">${club.name}</p>
             </a>
