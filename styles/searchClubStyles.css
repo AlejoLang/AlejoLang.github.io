@@ -97,6 +97,8 @@ h1
 .club-listed-icon
 {
     height: 50%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
     margin-right: 1.5rem;
 }
 

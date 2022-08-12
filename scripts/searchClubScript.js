@@ -61,8 +61,9 @@ async function displayResults(results)
     {
         document.getElementsByClassName('errorAlert')[0].showModal();
         return;
-    } 
-    if(!results.icon) {results.icon = './images/club-default.jpg'} // Si el club no tiene un avatar, se le asigna uno default
+    }
+
+    results.icon ??= './images/club-default.jpg'; // Si el club no tiene un avatar, se le asigna uno default
 
     resultSec.innerHTML = '';
 
@@ -81,11 +82,12 @@ async function displayResults(results)
     }
     
         const template =`
-                    <a href="./infoClub.html?${results.name
-                                                    .normalize("NFD")
-                                                    .replace(/[\u0300-\u036f]/g, "")
-                                                    .replaceAll(' ', '-')
-                                                    .replaceAll('.', '-')}
+                    <a href="./infoClub.html?${results.name.normalize("NFD")
+                                                            .toLowerCase()
+                                                            .replace(/[\u0300-\u036f]/g, "")
+                                                            .replaceAll(' ', '-')
+                                                            .replaceAll('.', '-')
+                                                }
                     " class="club-listed">
                         <img src="${results.icon}" alt="${results.name}'s profile pic" class="club-listed-icon">
                         <div class="club-listed-info">
