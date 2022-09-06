@@ -322,10 +322,7 @@ async function displayUserClubs(){
     Object.values(userClubs.clubs).forEach(club => {
         
         templateUserClubs += `
-            <a class="player-clubs-listedClub" href="./infoClub?${club.name.normalize("NFD")
-                                                                            .replace(/[\u0300-\u036f]/g, "")
-                                                                            .replaceAll(' ', '-')
-                                                                            .replaceAll('.', '-')}">
+            <a class="player-clubs-listedClub" href="./infoClub.html?${normalizeSearch(club.name)}">
                 <img src="${club.icon}" alt="${club.name + ' img'}" class="player-clubs-listedClub-clubImg">
                 <p class="player-clubs-listedClubs-clubName">${club.name}</p>
             </a>
@@ -369,6 +366,43 @@ function transformLastOnlineHours(time)
     }
 
     return res;
+}
+
+/* Cambia algunos caracteres que la API ignora para las consultas */
+
+const normalizeSearch = (txt) => {
+    let normalizedText = txt.normalize("NFD")
+                            .replace(/[\u0300-\u036f]/g, "")
+                            .trim()
+                            .replaceAll('/', '')
+                            
+    
+    let index = normalizedText.indexOf('-');
+    let allIndex = new Array();
+    while(index != -1){
+        allIndex.push(index);
+        index = normalizedText.indexOf('-', index + 1);
+    }
+    
+    let normalizedTextArr = normalizedText.split('');
+
+    allIndex.forEach(index => {
+
+        if(normalizedTextArr[index - 1] == ' '){
+            normalizedTextArr.splice(index - 1, 1);
+            index -= 1;
+        }
+
+        if(normalizedTextArr[index + 1] == ' '){
+            normalizedTextArr.splice(index + 1, 1);
+        }
+
+    });
+
+    normalizedText = normalizedTextArr.join('');
+
+    return normalizedText.replaceAll('.', '-')
+                        .replaceAll(' ', '-');
 }
 
 function openStatDropdown(e)

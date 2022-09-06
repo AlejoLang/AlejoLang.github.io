@@ -13,7 +13,7 @@ searchInp.addEventListener('keyup', function (e) {
 
 // Funcion sacada de 
 // https://stackoverflow.com/questions/8335834/how-can-i-hide-the-android-keyboard-using-javascript
-//Esconde el teclado de android
+// Esconde el teclado de android
 
 function hideKeyboard(element) {
     element.attr('readonly', 'readonly'); // Force keyboard to hide on input field.
@@ -26,16 +26,49 @@ function hideKeyboard(element) {
     }, 100);
 }
 
+/* Cambia algunos caracteres que la API ignora para las consultas */
+
+const normalizeSearch = (txt) => {
+    let normalizedText = txt.normalize("NFD")
+                            .replace(/[\u0300-\u036f]/g, "")
+                            .trim()
+                            .replaceAll('/', '')
+                            
+    
+    let index = normalizedText.indexOf('-');
+    let allIndex = new Array();
+    while(index != -1){
+        allIndex.push(index);
+        index = normalizedText.indexOf('-', index + 1);
+    }
+    
+    let normalizedTextArr = normalizedText.split('');
+
+    allIndex.forEach(index => {
+
+        if(normalizedTextArr[index - 1] == ' '){
+            normalizedTextArr.splice(index - 1, 1);
+            index -= 1;
+        }
+        console.log(normalizedTextArr)
+        if(normalizedTextArr[index + 1] == ' '){
+            normalizedTextArr.splice(index + 1, 1);
+        }
+
+    });
+
+    normalizedText = normalizedTextArr.join('');
+
+    return normalizedText.replaceAll('.', '-')
+                        .replaceAll(' ', '-');
+}
+
 //Funcion que busca y obtiene el JSON de la API de Chess.com
 //Tambien quita el focus en el boton de busqueda y borra el texto del input
 
 function search()
 {
-    const url = 'https://api.chess.com/pub/club/' + searchInp.value.normalize("NFD")
-                                                                    .replace(/[\u0300-\u036f]/g, "")
-                                                                    .trim()
-                                                                    .replaceAll(' ', '-')
-                                                                    .replaceAll('.', '-');
+    const url = 'https://api.chess.com/pub/club/' + normalizeSearch(searchInp.value); console.log(normalizeSearch(searchInp.value))
     
     searchInp.value = "";
     searchBtn.blur();
@@ -82,12 +115,7 @@ async function displayResults(results)
     }
     
         const template =`
-                    <a href="./infoClub.html?${results.name.normalize("NFD")
-                                                            .toLowerCase()
-                                                            .replace(/[\u0300-\u036f]/g, "")
-                                                            .replaceAll(' ', '-')
-                                                            .replaceAll('.', '-')
-                                                }
+                    <a href="./infoClub.html?${normalizeSearch(results.name)}
                     " class="club-listed">
                         <img src="${results.icon}" alt="${results.name}'s profile pic" class="club-listed-icon">
                         <div class="club-listed-info">
@@ -105,7 +133,7 @@ async function displayResults(results)
     
 }
 
-/*Codigo de https://codepen.io/geckotang/post/dialog-with-animation*/
+/* Codigo de https://codepen.io/geckotang/post/dialog-with-animation */
 
 function closeModal()
 {

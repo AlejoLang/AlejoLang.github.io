@@ -106,7 +106,7 @@ async function displayClubAdmins(clubAdmins){
         if (!adminData.avatar){ adminData.avatar = './images/user-default.png'; }
         const adminTemplate = `
             <li>
-                <a href="./infoPlayer?${adminData.username}" class="main-info-clubAdmins-adminList-admin">
+                <a href="./infoPlayer.html?${adminData.username}" class="main-info-clubAdmins-adminList-admin">
                     <img src="${adminData.avatar}" alt="${adminData.username}" class="main-info-clubAdmins-adminList-adminImg">
                     <p class="main-info-clubAdmins-adminList-adminName">${adminData.username}</p>
                 </a>
