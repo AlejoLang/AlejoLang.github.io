@@ -50,6 +50,10 @@
 {
     font-size: 1.8rem;
     margin-right: 1rem;
+    max-width: 100%;
+    overflow: hidden;
+    word-break: break-all;
+    word-wrap: break-word;
 }
 
 .player-principal-info-header i
@@ -539,7 +543,7 @@
     overflow: hidden;
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 800px) {
 
     .main-content
     {
