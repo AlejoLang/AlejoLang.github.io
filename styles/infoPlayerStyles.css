@@ -146,6 +146,7 @@
 .player-principal-info-subheader
 {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
     margin-bottom: 1rem;
     font-size: 0.8rem;
@@ -171,8 +172,9 @@
 
 .player-principal-info-flag
 {
-    width: 1.75em;
-    margin-left: 0.25rem;
+    height: 1.75em;
+    margin-left: 1rem;
+    aspect-ratio: 16 / 9;
 }
 
 .player-principal-info-other

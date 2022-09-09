@@ -56,8 +56,9 @@
 
 .main-info-clubPrincipal-clubInfo-clubFlag
 {
-    width: 1.75em;
-    margin-left: 0.25rem;
+    height: 1.75em;
+    margin-left: 1rem;
+    aspect-ratio: 16 / 9;
 }
 
 .main-info-clubPrincipal-clubInfo-other
