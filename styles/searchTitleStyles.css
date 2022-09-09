@@ -105,6 +105,15 @@
     margin: 10% auto;
 }
 
+.lds-ring-percentage
+{
+    position: absolute;
+    place-self: center;
+    margin: 0.5rem 0 0 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
 .lds-dual-ring 
 {
     display: inline-block;

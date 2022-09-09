@@ -51,7 +51,8 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function displayPlayers(players) {
     resultSection.innerHTML = '';
-    document.getElementsByClassName('lds-ring-div')[0].style.display = 'flex';
+    document.getElementsByClassName('lds-ring-div')[0].style.display = 'grid';
+    let precentage = document.querySelector('.lds-ring-percentage'); // Define una variable con el elemento del procentaje de carga
 
     let interruption = false; //Variable que detecta si se produjo un retorno de la funcion
     let finTemplate = ``;
@@ -86,7 +87,7 @@ async function displayPlayers(players) {
                 userFlag = 'https://countryflagsapi.com/svg/Argentina';
             } else if(userFlagCode.code == 'XX' || userFlagCode.name == 'International' || !userFlagCode.code){
                 userFlagCode.name = 'International';
-                userFlag = './images/flag-default';
+                userFlag = './images/flag-default.jpg';
             }
 
             finTemplate += `
@@ -98,6 +99,8 @@ async function displayPlayers(players) {
                         </div>
                     </a>`;
         };
+
+        precentage.textContent = ((i - (index - 1) * 20) + 1) * 5 + '%';
     }
 
     document.getElementsByClassName('lds-ring-div')[0].style.display = 'none';
