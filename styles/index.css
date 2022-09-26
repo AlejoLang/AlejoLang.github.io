@@ -96,6 +96,13 @@
     font-weight: 700;
 }
 
+.visits
+{
+    margin: 2rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
 @media screen and (min-width: 800px) {
     .time
     {

@@ -85,6 +85,7 @@
         </aside>
         <main class="main-content">
             <h1 class="main-title">Pagina Web utilizando la API de <a href="https://www.chess.com/news/view/published-data-api" target="_blank">Chess.com</a></h1>
+            <div class="visits"></div>
             <p class="main-description">Las opciones disponibles actualmente son:</p>
             <ul class="main-features">
                 <li class="main-features-item">Buscar por nombre de usuario</li>
@@ -114,8 +115,15 @@
                     <div class="time-extra-wind">Velocidad del viento: <span>12 KM/h</span></div>
                 </div>
             </div>
+
             <script src="./scripts/general.js"></script>
             <script src="./scripts/index.js"></script>
+            <script>
+                function cb(response) {
+                    document.querySelector('.visits').innerText = 'Este sitio fue visitado ' + response.value + ' veces';
+                }
+            </script>
+            <script async src="https://api.countapi.xyz/hit/AlejoLang.github.io/visits?callback=cb"></script>
         </main>
     </body>
 </html>
