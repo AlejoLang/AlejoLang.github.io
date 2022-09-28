@@ -115,7 +115,7 @@ async function displayResults(results)
     }
     
         const template =`
-                    <a href="./infoClub.html?${normalizeSearch(results.name)}
+                    <a href="./infoClub.html?${results.url.slice(results.url.lastIndexOf('/') + 1)}
                     " class="club-listed">
                         <img src="${results.icon}" alt="${results.name}'s profile pic" class="club-listed-icon">
                         <div class="club-listed-info">

@@ -320,9 +320,8 @@ async function displayUserClubs(){
     let templateUserClubs = ``;
     
     Object.values(userClubs.clubs).forEach(club => {
-        
         templateUserClubs += `
-            <a class="player-clubs-listedClub" href="./infoClub.html?${normalizeSearch(club.name)}">
+            <a class="player-clubs-listedClub" href="./infoClub.html?${club.url.slice(club.url.lastIndexOf('/') + 1)}">
                 <img src="${club.icon}" alt="${club.name + ' img'}" class="player-clubs-listedClub-clubImg">
                 <p class="player-clubs-listedClubs-clubName">${club.name}</p>
             </a>
