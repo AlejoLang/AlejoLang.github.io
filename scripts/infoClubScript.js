@@ -81,7 +81,7 @@ async function displayClubDescription(clubDescription){
         <div class="main-info-clubDescription">
             <p class="main-info-clubDescription-title">Descripción: </p>
             <div class="main-info-clubDescription-description">
-                ${clubDescription}
+                ${clubDescription ? clubDescription : 'El club no tiene descripcion'}
             </div>
         </div>
     `;
