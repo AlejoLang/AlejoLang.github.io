@@ -103,10 +103,47 @@
     font-size: 1.5rem;
 }
 
+.ad-dialog
+{
+    position: absolute;
+    width: 90%;
+    aspect-ratio: 1/1;
+    max-width: 90vw;
+    max-height: 70vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ad-dialog[open]::backdrop
+{
+    background-color: rgba(0, 0, 0, 0.479);
+}
+
+.close-ad
+{
+    position: absolute;
+    top: 0;
+    color: #121212;
+    width: 2rem;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+
+.ad-img
+{
+    width: 100%;
+    height: 100%;
+}
+
 @media screen and (min-width: 800px) {
     .time
     {
         width: 30vw;
         margin: auto;
+    }
+    .ad-dialog
+    {
+        width: 50%;
     }
 }
