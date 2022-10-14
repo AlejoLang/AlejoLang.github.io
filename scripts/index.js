@@ -1,20 +1,16 @@
+import fetchData from "./tools/fetch.js";
+
 const getWeatherData = async () => {
   const API_KEY = 'GdOtyPaUGVSU0iPE0jxpqSg1D4y7khQV';
-  const LOCATION = await fetch(`https://dataservice.accuweather.com/locations/v1/cities/ipaddress?apikey=${API_KEY}&language=es-AR`)
-                    .then(res => res.json());
-  const URL = `https://dataservice.accuweather.com/currentconditions/v1/${LOCATION.Key}?apikey=${API_KEY}&language=es-AR&details=true`;
+  const LOCATION = await fetchData(`https://dataservice.accuweather.com/locations/v1/cities/ipaddress?apikey=${API_KEY}`)
+  const URL = `https://dataservice.accuweather.com/currentconditions/v1/${LOCATION.Key}?apikey=${API_KEY}&language=es-AR&details=true`
 
-  const data = await fetch(URL)
-  if(!data.ok){
-    alert('Error en el servidor')
-  }
-
-  return {data: (await data.json())[0], location: LOCATION.LocalizedName}
+  const data = await fetchData(URL)
+  return {data: data[0], location: LOCATION.LocalizedName}
 }
 
 const displayWeatherData = async () => {
-  const {location, data} = await getWeatherData();
-console.log(data.Wind, location)
+  const {data, location} = await getWeatherData();
 
   document.querySelector('.time-title').textContent = `El tiempo en ${location} es: `
   document.querySelector('.time-cond-img').src = `./images/icons/${data.WeatherIcon}.svg`
@@ -26,7 +22,7 @@ console.log(data.Wind, location)
 
 window.addEventListener('load', displayWeatherData(), false)
 
-let adsImgs = [
+const adsImgs = [
   'https://i.ytimg.com/vi/MaFRE1-sn5Q/maxresdefault.jpg',
   'https://pbs.twimg.com/media/FJFdPCIXoAQh4yX.jpg',
   'https://crehana-blog.imgix.net/media/filer_public/90/83/9083027a-fc03-4e3f-8f55-636ffce6d36c/mcdonalds-happy-meal.jpg?auto=format&q=50',
@@ -35,8 +31,11 @@ let adsImgs = [
 ]
 
 if(Math.random() > 0.4){
-  document.querySelector('.ad-img').src = adsImgs[Math.ceil(Math.random() * 4)]
+  document.querySelector('.ad-img').src = adsImgs[Math.ceil(Math.random() * 5) - 1]
   document.querySelector('.ad-dialog').showModal()
 }
 
-document.querySelector('.close-ad').addEventListener('click', () => {document.querySelector('.ad-dialog').close()})
+document.querySelector('.close-ad')
+  .addEventListener('click', () => {
+    document.querySelector('.ad-dialog').close()
+  })
