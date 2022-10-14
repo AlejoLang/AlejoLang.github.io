@@ -1,6 +1,10 @@
+import fetchData from './tools/fetch.js'
+
 let searchInp = document.getElementsByClassName('search-inp')[0],
     searchBtn = document.getElementsByClassName('search-button')[0],
     resultSec = document.getElementsByClassName('results')[0];
+
+searchBtn.addEventListener('click', () => {search()})
 
 //Registra si se presiono la tecla Enter dentro del input para poder buscar
 
@@ -31,6 +35,10 @@ function hideKeyboard(element) {
 
 async function search()
 {
+    if(searchInp.value === '') {
+        document.getElementsByClassName('errorAlert')[0].showModal();
+        return;
+    }
     const url = 'https://api.chess.com/pub/player/' + searchInp.value.normalize("NFD")
                                                                     .replace(/[\u0300-\u036f]/g, "")
                                                                     .trim()
@@ -39,17 +47,8 @@ async function search()
     searchInp.value = "";
     searchBtn.blur();
 
-    fetch(url)
-        .then(data => { return data.json(); })
-        .then(res => { displayResults(res); })
-}
-
-//Obtiene un el codigo de pais del usuario
-
-async function getUserFlag(countryUrl)
-{
-    return await fetch(countryUrl)
-        .then((data) => data.json())
+    fetchData(url)
+        .then(res => { displayResults(res) })
 }
 
 // Muestra los resultados si se encontro el ususarion, caso contario 
@@ -57,7 +56,7 @@ async function getUserFlag(countryUrl)
 
 async function displayResults(results)
 {
-    if(results.code == 0)  // Si no se encntro el nombre, alerta y sale de la funcion
+    if(results.code === 0)  // Si no se encntro el nombre, alerta y sale de la funcion
     {
         document.getElementsByClassName('errorAlert')[0].showModal();
         return;
@@ -65,8 +64,8 @@ async function displayResults(results)
     if(!results.avatar) {results.avatar = './images/user-default.png'} // Si el usuario no tiene un avatar, se le asigna uno default
 
     resultSec.innerHTML = '';
-
-    country = await getUserFlag(results.country);
+    
+    const country = await fetchData(results.country); //Obtiene el codigo del pais
     
     let countryFlagLink = 'https://countryflagsapi.com/svg/' + country.name;
 
@@ -91,17 +90,4 @@ async function displayResults(results)
     
     resultSec.insertAdjacentHTML('beforeend', template);
     
-}
-
-/*Codigo de https://codepen.io/geckotang/post/dialog-with-animation*/
-
-function closeModal()
-{
-    dialog = document.getElementsByClassName('errorAlert')[0];
-    dialog.classList.add('hide');
-    dialog.addEventListener('webkitAnimationEnd', function(){
-        dialog.classList.remove('hide');
-        dialog.close();
-        dialog.removeEventListener('webkitAnimationEnd',  arguments.callee, false);
-    }, false);
 }
