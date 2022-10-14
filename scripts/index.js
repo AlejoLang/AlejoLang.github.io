@@ -1,8 +1,8 @@
 const getWeatherData = async () => {
   const API_KEY = 'GdOtyPaUGVSU0iPE0jxpqSg1D4y7khQV';
-  const LOCATION = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/ipaddress?apikey=${API_KEY}&language=es-AR`)
+  const LOCATION = await fetch(`https://dataservice.accuweather.com/locations/v1/cities/ipaddress?apikey=${API_KEY}&language=es-AR`)
                     .then(res => res.json());
-  const URL = `http://dataservice.accuweather.com/currentconditions/v1/${LOCATION.Key}?apikey=${API_KEY}&language=es-AR&details=true`;
+  const URL = `https://dataservice.accuweather.com/currentconditions/v1/${LOCATION.Key}?apikey=${API_KEY}&language=es-AR&details=true`;
 
   const data = await fetch(URL)
   if(!data.ok){
