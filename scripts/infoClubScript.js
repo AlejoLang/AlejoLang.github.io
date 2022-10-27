@@ -1,27 +1,11 @@
+import fetchData from './tools/fetch.js'
+
 let clubName = location.search.substring(1),
     mainContent = document.getElementsByClassName('main-content')[0];
 
-async function getClubData(url){
-    return await fetch(url)
-        .then((data) => {return data.json();})
-        .catch((err) => {alert('Error obteniendo el informacion del club: ' + err)});
-}
-
-async function getClubCountry(url){
-    return await fetch(url)
-        .then((data) => {return data.json();})
-        .catch((err) => {alert('Error obteniendo la informacion del pais del club: ' + err)});
-}
-
-async function getAdminData(url){
-    return await fetch(url)
-        .then((data) => {return data.json();})
-        .catch((err) => {alert('Error obteniendo la informacion de las administradores: ' + err)});
-}
-
 async function displayClubPrincipalInformation(clubData){
 
-    let clubCountry = await getClubCountry(clubData.country);
+    let clubCountry = await fetchData(clubData.country);
     let clubFlagLink;
 
     if ( clubCountry.name == 'Russia') {
@@ -40,67 +24,50 @@ async function displayClubPrincipalInformation(clubData){
         clubData.icon = './images/club-default.jpg';
     }
 
-    const template = `
-        <div class="main-info-clubPrincipal">
-            <img src="${clubData.icon}" alt="${clubData.name}" class="main-info-clubPrincipal-clubImg">
-            <div class="main-info-clubPrincipal-clubInfo">
-                <div class="main-info-clubPrincipal-clubInfo-header">
-                    <p class="main-info-clubPrincipal-clubInfo-clubName">${clubData.name}</p>
-                    <img src="${clubFlagLink}" alt="${clubCountry.name}" class="main-info-clubPrincipal-clubInfo-clubFlag">
-                </div>
-                <div class="main-info-clubPrincipal-clubInfo-other">
-                    <div class="main-info-clubPrincipal-clubInfo-avgDailyRating">
-                        <i class="fa-solid fa-ranking-star"></i>
-                        ${clubData.average_daily_rating}
-                    </div>
-                    <div class="main-info-clubPrincipal-clubInfo-members">
-                        <i class="fa-solid fa-users"></i>
-                        ${clubData.members_count}
-                    </div>
-                    <div class="main-info-clubPrincipal-clubInfo-creationDate">
-                        <i class="fa fa-solid fa-stopwatch"></i>
-                        ${
-                            new Date(clubData.created * 1000)
-                                .toLocaleDateString('es-AR', {year:"numeric", month: "short", day:"numeric"})
-                        }
-                    </div>
-                    <div class="main-info-clubPrincipal-clubInfo-lastActivity">
-                        <i class="fa fa-clock"></i>
-                        ${transformLastOnlineHours(clubData.last_activity)}
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
+    document.querySelector('.main-info-clubPrincipal-clubImg')
+        .src = clubData.icon;
+    
+    document.querySelector('.main-info-clubPrincipal-clubImg')
+        .alt = clubData.name;
+    
+    document.querySelector('.main-info-clubPrincipal-clubInfo-clubName')
+        .textContent = clubData.name;
+    
+    document.querySelector('.main-info-clubPrincipal-clubInfo-clubFlag')
+        .src = clubFlagLink;
 
-    return template;
+    document.querySelector('.main-info-clubPrincipal-clubInfo-clubFlag')
+        .alt = clubCountry.name;
+
+    document.querySelector('.main-info-clubPrincipal-clubInfo-avgDailyRating')
+        .insertAdjacentText('beforeend', clubData.average_daily_rating);
+    
+    document.querySelector('.main-info-clubPrincipal-clubInfo-members')
+        .insertAdjacentText('beforeend', clubData.members_count);
+
+    document.querySelector('.main-info-clubPrincipal-clubInfo-creationDate')
+        .insertAdjacentText('beforeend', new Date(clubData.created * 1000)
+                                            .toLocaleDateString('es-AR', {year:"numeric", month: "short", day:"numeric"}));
+
+    document.querySelector('.main-info-clubPrincipal-clubInfo-lastActivity')
+        .insertAdjacentText('beforeend', transformLastOnlineHours(clubData.last_activity));
+
 }
 
 async function displayClubDescription(clubDescription){
-    const template = `
-        <div class="main-info-clubDescription">
-            <p class="main-info-clubDescription-title">Descripción: </p>
-            <div class="main-info-clubDescription-description">
-                ${clubDescription ? clubDescription : 'El club no tiene descripcion'}
-            </div>
-        </div>
-    `;
-    return template;
+    document.querySelector('.main-info-clubDescription-description')
+        .textContent = `${clubDescription ? clubDescription : 'El club no tiene descripcion'}`
 }
 
 async function displayClubAdmins(clubAdmins){
-    let template = `
-        <div class="main-info-clubAdmins">
-            <p class="main-info-clubAdmins-title">Admins: </p>
-            <ul class="main-info-clubAdmins-adminsList">
-    `;
+    let template = ``;
 
     for(let i = 0; i<clubAdmins.length; i++){
         await addAdmins(clubAdmins[i]);
     }
     
     async function addAdmins(adminLink){
-        let adminData = await getAdminData(adminLink);
+        let adminData = await fetchData(adminLink);
         if (!adminData.avatar){ adminData.avatar = './images/user-default.png'; }
         const adminTemplate = `
             <li>
@@ -113,26 +80,21 @@ async function displayClubAdmins(clubAdmins){
         template += adminTemplate;
         delay(1000);
     }
-    template += `</ul></div>`;
-    return template;
+    
+    document.querySelector('.main-info-clubAdmins-adminsList')
+        .innerHTML = template;
+
 }
 
 async function displayClubPrincipalData(){
     const clubUrl = 'https://api.chess.com/pub/club/' + clubName;
-    const clubData = await getClubData(clubUrl);
+    const clubData = await fetchData(clubUrl);
     if(!clubData){return;}
+
+    displayClubPrincipalInformation(clubData);
+    displayClubDescription(clubData.description);
+    displayClubAdmins(clubData.admin);
     
-    const clubPrincipalInfo = await displayClubPrincipalInformation(clubData);
-    const clubDescription = await displayClubDescription(clubData.description);
-    const clubAdmins = await displayClubAdmins(clubData.admin);
-    const clubPrincipalData = `
-        <div class="main-info">
-            ${clubPrincipalInfo}
-            ${clubDescription}
-            ${clubAdmins }
-        </div>
-    `;
-    mainContent.insertAdjacentHTML('beforeend', clubPrincipalData)
 }
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -140,7 +102,7 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 function transformLastOnlineHours(time)
 {
     let res;
-    dif = new Date() - new Date(time * 1000);
+    let dif = new Date() - new Date(time * 1000);
 
     dif /= 1000;
     if(dif >= 1){ res = `${Math.trunc(dif)} seg.`;}
@@ -167,5 +129,4 @@ window.addEventListener('onload', start());
 async function start()
 {
     displayClubPrincipalData();
-    await delay(1000);
 }

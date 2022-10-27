@@ -44,94 +44,67 @@ async function displayUserPrincipalData()
         countryFlagLink = './images/flag-default';
     }
 
-    const templatePrincipalInfoHeader = 
-        `
-        <div class="player-principal-info-header">
-            <h1 class="player-principal-info-username">${userData.username}</h1>
-            <div class="player-principal-info-icons">
-                ${userData.is_streamer ?
-                    `<div class="player-principal-info-icon-twitch">
-                        <a href="${userData.twitch_url}" target="_blank" class="player-principal-info-twitch">
-                        <i class="player-principal-info-twitch-icon fa fa-twitch"></i>
-                        </a>
-                    </div>
-                    ` : ''
-                }
-                ${userData.status == 'staff' ?
-                    `<div class="player-principal-info-icon-status">
-                        <i class="player-principal-info-stat fa fa-hammer"></i>
-                    </div>
-                    ` : ''
-                }
-                ${userData.verified == true ?
-                    `<div class="player-principal-info-icon-verified">
-                        <i class="player-principal-info-verified fa fa-solid fa-check"></i>
-                    </div>
-                    ` : ''
-                }
+    document.querySelector('.player-principal-avatar')
+        .src = userData.avatar;
+    
+    document.querySelector('.player-principal-avatar')
+        .alt = userData.name;
+
+    document.querySelector('.player-principal-info-username').textContent = userData.username;
+
+    const iconsTemplate = `
+        ${userData.is_streamer ?
+            `<div class="player-principal-info-icon-twitch">
+                <a href="${userData.twitch_url}" target="_blank" class="player-principal-info-twitch">
+                    <i class="player-principal-info-twitch-icon fa fa-twitch"></i>
+                </a>
             </div>
-        </div>
-        `;
+            ` : ''
+        }
+        ${userData.status == 'staff' ?
+            `<div class="player-principal-info-icon-status">
+                <i class="player-principal-info-stat fa fa-hammer"></i>
+            </div>
+            ` : ''
+        }
+        ${userData.verified == true ?
+            `<div class="player-principal-info-icon-verified">
+                <i class="player-principal-info-verified fa fa-solid fa-check"></i>
+            </div>
+            ` : ''
+        }`;
+
+    document.querySelector('.player-principal-info-icons').innerHTML = iconsTemplate;
 
     const templatePrincipalInfoSubheader =
         `
-        <div class="player-principal-info-subheader">
-            ${userData.name ? `
-                <p class="player-principal-info-fullname">
-                    ${userData.name}
-                </p> ` : ''
-            }
+        ${userData.name ? `
+            <p class="player-principal-info-fullname">
+                ${userData.name}
+            </p> ` : ''
+        }
             
-            
-            <div class="player-principal-info-location">
-                ${userData.location ? `
-                    <i class="player-principal-info-location-icon fa-solid fa-location-dot"></i>
-                    <p class="player-principal-info-city">${userData.location}</p>` : ''}
-                    <img src="${countryFlagLink}" class="player-principal-info-flag">
-                </div>
-        </div>
-        `;
-    
-    const templatePrincipalInfoOther =
-        `
-        <div class="player-principal-info-other">
-            <div class="player-principal-info-other-lastonline">
-                <i class="player-principal-info-other-lastonline-icon fa fa-clock"></i>
-                    ${
-                        transformLastOnlineHours(userData.last_online)
-                    }
-                </div>
-            <div class="player-principal-info-other-joined">
-                <i class="player-principal-info-other-joined-icon fa fa-solid fa-stopwatch"></i>
-                ${
-                    new Date(userData.joined * 1000)
-                    .toLocaleDateString('es-AR', 
-                                        {year:"numeric", month: "short", day:"numeric"})
-                }
-            </div>
-            <div class="player-principal-info-other-followers">
-                <i class="player-principal-info-other-followers-icon fa fa-people-group"></i>
-                ${userData.followers}
-            </div>
+        <div class="player-principal-info-location">
+            ${userData.location ? `
+                <i class="player-principal-info-location-icon fa-solid fa-location-dot"></i>
+                <p class="player-principal-info-city">${userData.location}</p>` : ''}
+                <img src="${countryFlagLink}" class="player-principal-info-flag">
         </div>
         `;
 
-    const templatePlayerPrincipal = 
-        `
-        <section class="player-principal">
-            <img src="${userData.avatar == undefined ? 
-                        './images/user-default.png' : 
-                        `${userData.avatar}`}" 
-            alt="${userData.username}" class="player-principal-avatar">  
-            <div class="player-principal-info">
-                ${templatePrincipalInfoHeader}
-                ${templatePrincipalInfoSubheader}
-                ${templatePrincipalInfoOther}
-            </div>
-        </section>
-        `;
+    document.querySelector('.player-principal-info-subheader').innerHTML = templatePrincipalInfoSubheader;
     
-    mainContent.insertAdjacentHTML('afterbegin', templatePlayerPrincipal);
+
+    document.querySelector('.player-principal-info-other-lastonline')
+        .insertAdjacentText('beforeend', transformLastOnlineHours(userData.last_online));
+
+    document.querySelector('.player-principal-info-other-joined')
+        .insertAdjacentText('beforeend', new Date(userData.joined * 1000)
+                                            .toLocaleDateString('es-AR',{year:"numeric", month: "short", day:"numeric"}));
+    
+    document.querySelector('.player-principal-info-other-followers')
+        .insertAdjacentText('beforeend', userData.followers);
+
     return 0;
 }
 
@@ -291,17 +264,8 @@ async function displayUserStats()
         totalDraw += statValue?.record?.draw ?? 0;
     });
 
-    const templateTotalGamesPlayed = 
-    `
-        <div class="player-stats-mainHeader">
-            <p class="player-stats-tittext">Estadisticas</p>
-            <div class="player-stats-mainHeader-games">
-            <p class="player-stats-content-text">Partidas Totales Jugadas: ${totalWin + totalLoss + totalDraw}</p>
-            </div>
-        </div>
-    `;
-
-    statsDiv.insertAdjacentHTML('afterbegin', templateTotalGamesPlayed);
+    document.querySelector('.player-stats-content-text')
+        .textContent = `Partidas Totales Jugadas: ${totalWin + totalLoss + totalDraw}`;
 
     statsDiv.insertAdjacentHTML('beforeend', `
         <div class="player-stats-content-gamesplayed player-stats-content-div fide-div">
@@ -310,6 +274,7 @@ async function displayUserStats()
                 ${fide ?? '0'}
             </p>
         </div>`);
+
     return 0;
 }
 
@@ -328,17 +293,12 @@ async function displayUserClubs(){
         `;
     });
 
-    let templateUserClubsFinal = `
-        <section class="player-clubs">
-            <div class="player-clubs-info">
-                <p class="player-clubs-info-title">Clubes</p>
-                <p class="player-clubs-info-totalClubs">Clubes totales: ${userClubs.clubs.length}</p>
-            </div>
-            ${templateUserClubs}
-        </section>
-    `;
+    document.querySelector('.player-clubs-info-totalClubs')
+        .textContent = `Clubes totales: ${userClubs.clubs.length}`;
 
-    mainContent.insertAdjacentHTML('beforeend', templateUserClubsFinal);
+    document.querySelector('.player-clubs-info')
+        .insertAdjacentHTML('beforeend', templateUserClubs)
+    
     return 0;
 }
 

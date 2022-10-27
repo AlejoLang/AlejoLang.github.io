@@ -1,3 +1,5 @@
+import fetchData from './tools/fetch.js'
+
 let inputSelector = document.getElementsByClassName('title-input-selection')[0];
 let resultSection = document.getElementsByClassName('results')[0];
 let mainHeader = document.getElementsByClassName('main-content-header')[0];
@@ -8,22 +10,7 @@ let maxIndex;
 let playersList;
 let control = false;
 
-async function getTitledPlayers(urlTit) {
-    let data = await fetch(urlTit);
-    return data.json();
-}
-
-async function getPlayerInfo(urlPlayer) {
-    let data = await fetch(urlPlayer);
-    return data.json();
-}
-
-async function getUserFlagCode(urlCountry) {
-    let data = await fetch(urlCountry);
-    return data.json();
-}
-
-async function searchPlayers() {
+const searchPlayers = async () => {
     if (inputSelector.value) {
         index = 1;
         document.getElementsByClassName('paginator-index')[0].textContent = index;
@@ -31,7 +18,7 @@ async function searchPlayers() {
         await delay(1000);
 
         let url = 'https://api.chess.com/pub/titled/' + inputSelector.value;
-        playersList = await getTitledPlayers(url);
+        playersList = await fetchData(url);
         maxIndex = Math.ceil(playersList.players.length / 20);
 
         document?.getElementsByClassName('results-tit')[0]?.remove();
@@ -73,11 +60,11 @@ async function displayPlayers(players) {
         async function displayPlayer(player) {
             let url = 'https://api.chess.com/pub/player/' + player + '/';
 
-            let playerInfo = await getPlayerInfo(url);
+            let playerInfo = await fetchData(url);
 
             if (!playerInfo.avatar) { playerInfo.avatar = './images/user-default.png'; }
 
-            let userFlagCode = await getUserFlagCode(playerInfo.country);
+            let userFlagCode = await fetchData(playerInfo.country);
             let userFlag = 'https://countryflagsapi.com/svg/' + userFlagCode.name;
 
             if (userFlagCode.name == 'Russia') {
@@ -155,3 +142,5 @@ function closeModal() {
         dialog.removeEventListener('webkitAnimationEnd', arguments.callee, false);
     }, false);
 }
+
+searchBtn.addEventListener('click', searchPlayers, false)

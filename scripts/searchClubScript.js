@@ -1,3 +1,5 @@
+import fetchData from './tools/fetch.js'
+
 let searchInp = document.getElementsByClassName('search-inp')[0],
     searchBtn = document.getElementsByClassName('search-button')[0],
     resultSec = document.getElementsByClassName('results')[0];
@@ -72,17 +74,8 @@ function search()
     
     searchInp.value = "";
     searchBtn.blur();
-    fetch(url)
-        .then((data) =>  data.json())
+    fetchData(url)
         .then(res => {displayResults(res);})
-}
-
-//Obtiene un el codigo de pais del usuario
-
-async function getUserFlag(countryUrl)
-{
-    return await fetch(countryUrl)
-        .then((data) =>  data.json())
 }
 
 // Muestra los resultados si se encontro el ususarion, caso contario 
@@ -100,7 +93,7 @@ async function displayResults(results)
 
     resultSec.innerHTML = '';
 
-    country = await getUserFlag(results.country);
+    const country = await fetchData(results.country);
     
     let countryFlagLink = 'https://countryflagsapi.com/svg/' + country.name;
 
