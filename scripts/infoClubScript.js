@@ -25,7 +25,7 @@ async function displayClubPrincipalInformation(clubData){
     }
 
     document.querySelector('.main-info-clubPrincipal-clubImg')
-        .src = clubData.icon;
+        .src = clubData.icon ??'-/images/club-default.jpg';
     
     document.querySelector('.main-info-clubPrincipal-clubImg')
         .alt = clubData.name;
