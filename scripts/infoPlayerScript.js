@@ -45,7 +45,7 @@ async function displayUserPrincipalData()
     }
 
     document.querySelector('.player-principal-avatar')
-        .src = userData.avatar;
+        .src = userData.avatar ?? './images/user-default.png';
     
     document.querySelector('.player-principal-avatar')
         .alt = userData.name;
